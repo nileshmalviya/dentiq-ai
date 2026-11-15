@@ -1,0 +1,2 @@
+import { useEffect, useState } from 'react';
+export function ApiNotice() { const [message, setMessage] = useState(''); useEffect(() => { const handler = (e: Event) => setMessage((e as CustomEvent<string>).detail); window.addEventListener('dentiq:error', handler); return () => window.removeEventListener('dentiq:error', handler); }, []); return message ? <div role="alert" className="local-notice">{message}<button type="button" onClick={() => setMessage('')} aria-label="Dismiss error">�</button></div> : null; }

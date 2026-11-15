@@ -1,0 +1,1129 @@
+{
+  "doctors": {
+    "doctors": [
+      {
+        "id": "arjun-mehta",
+        "name": "Dr. Arjun Mehta",
+        "specialty": "General & Restorative Dentistry",
+        "rating": 4.9,
+        "reviews": 328,
+        "distance": "2.4 km",
+        "nextAvailable": "Today, 4:30 PM",
+        "experience": 12,
+        "fee": 800,
+        "photo": "/assets/doctor-arjun.png",
+        "clinic": "SmileCare Dental Clinic",
+        "qualification": "BDS, MDS (Conservative Dentistry)",
+        "languages": "English, Hindi",
+        "about": "Experienced dentist with a focus on preventive and restorative dental care.",
+        "treatments": [
+          "Consultation",
+          "Teeth Cleaning",
+          "Filling",
+          "Root Canal",
+          "Whitening"
+        ]
+      },
+      {
+        "id": "neha-sharma",
+        "name": "Dr. Neha Sharma",
+        "specialty": "Endodontics (Root Canal)",
+        "rating": 4.7,
+        "reviews": 196,
+        "distance": "3.1 km",
+        "nextAvailable": "Tomorrow, 10:00 AM",
+        "experience": 9,
+        "fee": 800,
+        "photo": "/assets/doctor-neha.png",
+        "clinic": "Pearl Dental Studio",
+        "qualification": "BDS, MDS (Endodontics)",
+        "languages": "English, Hindi",
+        "about": "A patient-focused endodontist with an interest in comfortable, personalized dental visits.",
+        "treatments": [
+          "Consultation",
+          "Root Canal",
+          "Filling",
+          "Dental Crowns"
+        ]
+      },
+      {
+        "id": "priya-patel",
+        "name": "Dr. Priya Patel",
+        "specialty": "Orthodontics & Smile Design",
+        "rating": 4.8,
+        "reviews": 152,
+        "distance": "4.0 km",
+        "nextAvailable": "Tomorrow, 11:00 AM",
+        "experience": 8,
+        "fee": 900,
+        "photo": "/assets/doctor-neha.png",
+        "clinic": "Bright Smiles Clinic",
+        "qualification": "BDS, MDS (Orthodontics)",
+        "languages": "English, Hindi, Gujarati",
+        "about": "Dedicated to personalized orthodontic care and helping patients feel confident about their smiles.",
+        "treatments": [
+          "Consultation",
+          "Braces",
+          "Aligners",
+          "Whitening",
+          "Implant",
+          "Extraction"
+        ]
+      }
+    ],
+    "doctorReviews": [
+      {
+        "name": "Rohan K.",
+        "rating": 5,
+        "date": "18 Apr",
+        "text": "A very comfortable visit. The doctor explained every step and answered all my questions."
+      },
+      {
+        "name": "Aditi V.",
+        "rating": 5,
+        "date": "15 Apr",
+        "text": "Friendly team, a clean clinic, and a smooth appointment experience."
+      },
+      {
+        "name": "Rahul M.",
+        "rating": 4,
+        "date": "10 Apr",
+        "text": "Helpful consultation and clear follow-up instructions. Happy with the experience."
+      }
+    ]
+  },
+  "dashboard": {
+    "doctorStats": [
+      {
+        "label": "Today's Appointments",
+        "value": "12",
+        "icon": "calendar",
+        "tone": "green"
+      },
+      {
+        "label": "Pending Consultations",
+        "value": "08",
+        "icon": "users",
+        "tone": "green"
+      },
+      {
+        "label": "Treatment Plans",
+        "value": "2 / 3",
+        "icon": "clipboard",
+        "tone": "green"
+      },
+      {
+        "label": "Follow-ups Due",
+        "value": "3",
+        "icon": "followup",
+        "tone": "amber"
+      }
+    ],
+    "adminStats": [
+      {
+        "label": "Total Patients",
+        "value": "1,248",
+        "icon": "users",
+        "tone": "green"
+      },
+      {
+        "label": "Active Doctors",
+        "value": "86",
+        "icon": "doctor",
+        "tone": "blue"
+      },
+      {
+        "label": "Partner Clinics",
+        "value": "42",
+        "icon": "clinic",
+        "tone": "green"
+      },
+      {
+        "label": "Avg. Rating",
+        "value": "4.8",
+        "icon": "star",
+        "tone": "amber"
+      }
+    ],
+    "appointmentTrend": [
+      {
+        "month": "Jul",
+        "appointments": 700,
+        "revenue": 72000
+      },
+      {
+        "month": "Aug",
+        "appointments": 850,
+        "revenue": 85000
+      },
+      {
+        "month": "Sep",
+        "appointments": 850,
+        "revenue": 81000
+      },
+      {
+        "month": "Oct",
+        "appointments": 1050,
+        "revenue": 102000
+      },
+      {
+        "month": "Nov",
+        "appointments": 1200,
+        "revenue": 116000
+      },
+      {
+        "month": "Dec",
+        "appointments": 1300,
+        "revenue": 128000
+      }
+    ],
+    "previousTrend": [
+      {
+        "month": "Jul",
+        "appointments": 620,
+        "revenue": 72000
+      },
+      {
+        "month": "Aug",
+        "appointments": 740,
+        "revenue": 85000
+      },
+      {
+        "month": "Sep",
+        "appointments": 810,
+        "revenue": 81000
+      },
+      {
+        "month": "Oct",
+        "appointments": 900,
+        "revenue": 102000
+      },
+      {
+        "month": "Nov",
+        "appointments": 980,
+        "revenue": 116000
+      },
+      {
+        "month": "Dec",
+        "appointments": 1100,
+        "revenue": 128000
+      }
+    ],
+    "topTreatments": [
+      {
+        "name": "Teeth Cleaning",
+        "percent": 28
+      },
+      {
+        "name": "Filling",
+        "percent": 20
+      },
+      {
+        "name": "Root Canal",
+        "percent": 15
+      },
+      {
+        "name": "Extraction",
+        "percent": 12
+      },
+      {
+        "name": "Braces",
+        "percent": 10
+      },
+      {
+        "name": "Implant",
+        "percent": 8
+      },
+      {
+        "name": "Whitening",
+        "percent": 7
+      }
+    ],
+    "clinics": [
+      {
+        "id": "CL-001",
+        "name": "SmileCare Dental Clinic",
+        "city": "Mumbai",
+        "doctors": 8,
+        "patients": 328,
+        "status": "Active"
+      },
+      {
+        "id": "CL-002",
+        "name": "Pearl Dental Studio",
+        "city": "Pune",
+        "doctors": 5,
+        "patients": 196,
+        "status": "Active"
+      },
+      {
+        "id": "CL-003",
+        "name": "Bright Smiles Clinic",
+        "city": "Bengaluru",
+        "doctors": 6,
+        "patients": 254,
+        "status": "Active"
+      },
+      {
+        "id": "CL-004",
+        "name": "City Dental Centre",
+        "city": "Delhi",
+        "doctors": 4,
+        "patients": 180,
+        "status": "Under Review"
+      }
+    ],
+    "clinicalNotes": [
+      {
+        "id": "NOTE-01",
+        "patient": "Rohan Kapoor",
+        "date": "23 Apr",
+        "title": "Initial consultation",
+        "content": "Sample consultation note. Patient concerns and a follow-up visit were recorded for this demonstration."
+      },
+      {
+        "id": "NOTE-02",
+        "patient": "Aditi Verma",
+        "date": "23 Apr",
+        "title": "Routine cleaning visit",
+        "content": "Sample visit note. Cleaning appointment completed and the next routine visit discussed."
+      },
+      {
+        "id": "NOTE-03",
+        "patient": "Neha Shah",
+        "date": "22 Apr",
+        "title": "Restorative care review",
+        "content": "Sample review note. Existing care plan reviewed with the patient."
+      }
+    ],
+    "treatmentPlans": [
+      {
+        "id": "TP-001",
+        "patient": "Rahul Mehta",
+        "title": "Restorative care plan",
+        "completed": 2,
+        "total": 3,
+        "steps": [
+          "Consultation",
+          "Root Canal",
+          "Crown fitting"
+        ],
+        "status": "In Progress"
+      },
+      {
+        "id": "TP-002",
+        "patient": "Ananya Singh",
+        "title": "Orthodontic care plan",
+        "completed": 1,
+        "total": 4,
+        "steps": [
+          "Assessment",
+          "Braces fitting",
+          "Review",
+          "Retention"
+        ],
+        "status": "In Progress"
+      },
+      {
+        "id": "TP-003",
+        "patient": "Aditi Verma",
+        "title": "Preventive care plan",
+        "completed": 2,
+        "total": 2,
+        "steps": [
+          "Examination",
+          "Teeth Cleaning"
+        ],
+        "status": "Completed"
+      }
+    ],
+    "consultations": [
+      {
+        "id": "AI-001",
+        "patient": "Rohan Kapoor",
+        "concern": "Toothache",
+        "symptoms": "Chewing or biting",
+        "time": "10 min ago",
+        "status": "Pending"
+      },
+      {
+        "id": "AI-002",
+        "patient": "Neha Shah",
+        "concern": "Sensitivity",
+        "symptoms": "Hot or cold sensitivity",
+        "time": "25 min ago",
+        "status": "Pending"
+      },
+      {
+        "id": "AI-003",
+        "patient": "Ananya Singh",
+        "concern": "Routine checkup",
+        "symptoms": "General dental questions",
+        "time": "1 hour ago",
+        "status": "Reviewed"
+      }
+    ]
+  },
+  "services": {
+    "services": [
+      {
+        "id": "cleaning",
+        "name": "Teeth Cleaning",
+        "icon": "tooth",
+        "price": 1500,
+        "category": "Preventive",
+        "active": true
+      },
+      {
+        "id": "filling",
+        "name": "Filling",
+        "icon": "tooth",
+        "price": 2000,
+        "category": "Restorative",
+        "active": true
+      },
+      {
+        "id": "root-canal",
+        "name": "Root Canal",
+        "icon": "tooth",
+        "price": 5000,
+        "category": "Restorative",
+        "active": true
+      },
+      {
+        "id": "braces",
+        "name": "Braces",
+        "icon": "braces",
+        "price": 25000,
+        "category": "Orthodontics",
+        "active": true
+      },
+      {
+        "id": "implant",
+        "name": "Implant",
+        "icon": "implant",
+        "price": 20000,
+        "category": "Restorative",
+        "active": true
+      },
+      {
+        "id": "whitening",
+        "name": "Whitening",
+        "icon": "sparkles",
+        "price": 4000,
+        "category": "Cosmetic",
+        "active": true
+      },
+      {
+        "id": "extraction",
+        "name": "Extraction",
+        "icon": "extraction",
+        "price": 2500,
+        "category": "Surgical",
+        "active": true
+      },
+      {
+        "id": "aligners",
+        "name": "Aligners",
+        "icon": "braces",
+        "price": 35000,
+        "category": "Orthodontics",
+        "active": true
+      },
+      {
+        "id": "crowns",
+        "name": "Dental Crowns",
+        "icon": "tooth",
+        "price": 6000,
+        "category": "Restorative",
+        "active": true
+      },
+      {
+        "id": "checkup",
+        "name": "Dental Checkup",
+        "icon": "tooth",
+        "price": 800,
+        "category": "Preventive",
+        "active": true
+      }
+    ]
+  },
+  "mockPatients": {
+    "mockPatients": [
+      {
+        "id": "PT-1001",
+        "name": "Rohan Kapoor",
+        "age": 32,
+        "gender": "Male",
+        "phone": "+91 98765 43210",
+        "email": "rohan@example.com",
+        "lastVisit": "23 Apr",
+        "treatment": "Consultation",
+        "status": "Active",
+        "doctorIds": [
+          "arjun-mehta"
+        ]
+      },
+      {
+        "id": "PT-1002",
+        "name": "Aditi Verma",
+        "age": 28,
+        "gender": "Female",
+        "phone": "+91 98765 43211",
+        "email": "aditi@example.com",
+        "lastVisit": "23 Apr",
+        "treatment": "Teeth Cleaning",
+        "status": "Active",
+        "doctorIds": [
+          "arjun-mehta"
+        ]
+      },
+      {
+        "id": "PT-1003",
+        "name": "Neha Shah",
+        "age": 35,
+        "gender": "Female",
+        "phone": "+91 98765 43212",
+        "email": "neha@example.com",
+        "lastVisit": "22 Apr",
+        "treatment": "Filling",
+        "status": "Follow-up",
+        "doctorIds": [
+          "arjun-mehta"
+        ]
+      },
+      {
+        "id": "PT-1004",
+        "name": "Rahul Mehta",
+        "age": 41,
+        "gender": "Male",
+        "phone": "+91 98765 43213",
+        "email": "rahul@example.com",
+        "lastVisit": "21 Apr",
+        "treatment": "Root Canal",
+        "status": "Active",
+        "doctorIds": [
+          "arjun-mehta"
+        ]
+      },
+      {
+        "id": "PT-1005",
+        "name": "Ananya Singh",
+        "age": 24,
+        "gender": "Female",
+        "phone": "+91 98765 43214",
+        "email": "ananya@example.com",
+        "lastVisit": "19 Apr",
+        "treatment": "Braces",
+        "status": "Follow-up",
+        "doctorIds": [
+          "arjun-mehta",
+          "priya-patel"
+        ]
+      },
+      {
+        "id": "PT-1006",
+        "name": "Vikram Rao",
+        "age": 46,
+        "gender": "Male",
+        "phone": "+91 98765 43215",
+        "email": "vikram@example.com",
+        "lastVisit": "17 Apr",
+        "treatment": "Implant",
+        "status": "Inactive",
+        "doctorIds": [
+          "neha-sharma"
+        ]
+      }
+    ],
+    "mockDentalRecords": [
+      {
+        "id": "REC-01",
+        "title": "Dental examination",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "18 Apr",
+        "type": "Visit summary",
+        "description": "Routine dental visit and recorded care plan. This is a sample record.",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "REC-02",
+        "title": "Dental X-ray",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "18 Apr",
+        "type": "Imaging",
+        "description": "Sample imaging record. No real medical image is stored in this demo.",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "REC-03",
+        "title": "Teeth cleaning",
+        "doctor": "Dr. Neha Sharma",
+        "date": "02 Apr",
+        "type": "Treatment",
+        "description": "Sample completed cleaning appointment and follow-up notes.",
+        "patientId": "PT-1001"
+      }
+    ]
+  },
+  "mockAppointments": {
+    "mockAppointments": [
+      {
+        "id": "APT-1001",
+        "time": "10:00 AM",
+        "patient": "Rohan Kapoor",
+        "purpose": "Consultation",
+        "status": "Checked In",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "23 Apr",
+        "fee": 800,
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "APT-1002",
+        "time": "11:00 AM",
+        "patient": "Aditi Verma",
+        "purpose": "Teeth Cleaning",
+        "status": "In Progress",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "23 Apr",
+        "fee": 1500,
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1002"
+      },
+      {
+        "id": "APT-1003",
+        "time": "2:00 PM",
+        "patient": "Neha Shah",
+        "purpose": "Filling",
+        "status": "Scheduled",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "23 Apr",
+        "fee": 2000,
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1003"
+      },
+      {
+        "id": "APT-1004",
+        "time": "4:30 PM",
+        "patient": "Rahul Mehta",
+        "purpose": "Root Canal",
+        "status": "Scheduled",
+        "doctor": "Dr. Arjun Mehta",
+        "date": "23 Apr",
+        "fee": 5000,
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1004"
+      },
+      {
+        "id": "APT-1005",
+        "doctorId": "neha-sharma",
+        "patientId": "PT-1006",
+        "doctor": "Dr. Neha Sharma",
+        "patient": "Vikram Rao",
+        "time": "12:00 PM",
+        "purpose": "Consultation",
+        "date": "23 Apr",
+        "fee": 800,
+        "status": "Scheduled"
+      },
+      {
+        "id": "APT-1006",
+        "doctorId": "priya-patel",
+        "patientId": "PT-1005",
+        "doctor": "Dr. Priya Patel",
+        "patient": "Ananya Singh",
+        "time": "3:00 PM",
+        "purpose": "Braces",
+        "date": "23 Apr",
+        "fee": 900,
+        "status": "Scheduled"
+      }
+    ]
+  },
+  "inventory": {
+    "mockInventory": [
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-001",
+        "name": "Dental Gloves",
+        "category": "Protective Equipment",
+        "quantity": 18,
+        "unit": "boxes",
+        "minimumStock": 20,
+        "unitPrice": 420,
+        "expiryDate": "2027-08-31"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-002",
+        "name": "Face Masks",
+        "category": "Protective Equipment",
+        "quantity": 60,
+        "unit": "boxes",
+        "minimumStock": 20,
+        "unitPrice": 180,
+        "expiryDate": "2027-12-31"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-003",
+        "name": "Syringes",
+        "category": "Consumables",
+        "quantity": 150,
+        "unit": "pieces",
+        "minimumStock": 50,
+        "unitPrice": 12.5,
+        "expiryDate": "2027-06-30"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-004",
+        "name": "Local Anesthesia",
+        "category": "Medicines",
+        "quantity": 8,
+        "unit": "boxes",
+        "minimumStock": 10,
+        "unitPrice": 950,
+        "expiryDate": "2026-11-22"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-005",
+        "name": "Dental Filling Material",
+        "category": "Restorative",
+        "quantity": 0,
+        "unit": "kits",
+        "minimumStock": 5,
+        "unitPrice": 1250,
+        "expiryDate": "2026-11-08"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-006",
+        "name": "Composite Resin",
+        "category": "Restorative",
+        "quantity": 42,
+        "unit": "syringes",
+        "minimumStock": 10,
+        "unitPrice": 850,
+        "expiryDate": "2027-06-30"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-007",
+        "name": "Root Canal Files",
+        "category": "Endodontics",
+        "quantity": 5,
+        "unit": "packs",
+        "minimumStock": 10,
+        "unitPrice": 640,
+        "expiryDate": "2026-11-28"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-008",
+        "name": "Dental Cement",
+        "category": "Restorative",
+        "quantity": 12,
+        "unit": "kits",
+        "minimumStock": 6,
+        "unitPrice": 720,
+        "expiryDate": "2026-12-05"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-009",
+        "name": "Cotton Rolls",
+        "category": "Consumables",
+        "quantity": 0,
+        "unit": "packs",
+        "minimumStock": 10,
+        "unitPrice": 110,
+        "expiryDate": null
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-010",
+        "name": "Disinfectant",
+        "category": "Sterilization",
+        "quantity": 6,
+        "unit": "bottles",
+        "minimumStock": 8,
+        "unitPrice": 380,
+        "expiryDate": "2026-12-30"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-011",
+        "name": "Impression Material",
+        "category": "Impressions",
+        "quantity": 18,
+        "unit": "kits",
+        "minimumStock": 5,
+        "unitPrice": 560,
+        "expiryDate": "2027-01-31"
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-012",
+        "name": "Sterilization Pouches",
+        "category": "Sterilization",
+        "quantity": 35,
+        "unit": "packs",
+        "minimumStock": 10,
+        "unitPrice": 290,
+        "expiryDate": null
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-013",
+        "name": "Saliva Ejectors",
+        "category": "Consumables",
+        "quantity": 90,
+        "unit": "pieces",
+        "minimumStock": 30,
+        "unitPrice": 4.5,
+        "expiryDate": null
+      },
+      {
+        "doctorId": "arjun-mehta",
+        "clinicId": "CL-001",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-014",
+        "name": "Dental Bibs",
+        "category": "Protective Equipment",
+        "quantity": 24,
+        "unit": "packs",
+        "minimumStock": 12,
+        "unitPrice": 160,
+        "expiryDate": null
+      },
+      {
+        "doctorId": "neha-sharma",
+        "clinicId": "CL-002",
+        "supplier": "Dental Supply Co.",
+        "notes": "Static demonstration inventory.",
+        "id": "INV-201",
+        "name": "Endodontic Files",
+        "category": "Endodontics",
+        "quantity": 40,
+        "unit": "packs",
+        "minimumStock": 10,
+        "unitPrice": 700,
+        "expiryDate": "2027-05-31"
+      }
+    ],
+    "inventoryCategories": [
+      "Protective Equipment",
+      "Consumables",
+      "Medicines",
+      "Restorative",
+      "Endodontics",
+      "Sterilization",
+      "Impressions"
+    ],
+    "inventoryUnits": [
+      "boxes",
+      "pieces",
+      "packs",
+      "kits",
+      "syringes",
+      "bottles",
+      "tubes",
+      "cartridges"
+    ]
+  },
+  "mockClinicalData": {
+    "mockClinicalNotes": [
+      {
+        "id": "NOTE-01",
+        "patient": "Rohan Kapoor",
+        "date": "23 Apr",
+        "title": "Initial consultation",
+        "content": "Sample consultation note. Patient concerns and a follow-up visit were recorded for this demonstration.",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "NOTE-02",
+        "patient": "Aditi Verma",
+        "date": "23 Apr",
+        "title": "Routine cleaning visit",
+        "content": "Sample visit note. Cleaning appointment completed and the next routine visit discussed.",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1002"
+      },
+      {
+        "id": "NOTE-03",
+        "patient": "Neha Shah",
+        "date": "22 Apr",
+        "title": "Restorative care review",
+        "content": "Sample review note. Existing care plan reviewed with the patient.",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1003"
+      },
+      {
+        "id": "NOTE-04",
+        "patient": "Vikram Rao",
+        "patientId": "PT-1006",
+        "doctorId": "neha-sharma",
+        "date": "22 Apr",
+        "title": "Endodontic review",
+        "content": "Fictional clinical note assigned to Dr. Neha Sharma."
+      }
+    ],
+    "mockConsultations": [
+      {
+        "id": "AI-001",
+        "patient": "Rohan Kapoor",
+        "concern": "Toothache",
+        "symptoms": "Chewing or biting",
+        "time": "10 min ago",
+        "status": "Pending",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "AI-002",
+        "patient": "Neha Shah",
+        "concern": "Sensitivity",
+        "symptoms": "Hot or cold sensitivity",
+        "time": "25 min ago",
+        "status": "Pending",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1003"
+      },
+      {
+        "id": "AI-003",
+        "patient": "Ananya Singh",
+        "concern": "Routine checkup",
+        "symptoms": "General dental questions",
+        "time": "1 hour ago",
+        "status": "Reviewed",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1005"
+      },
+      {
+        "id": "AI-004",
+        "patient": "Vikram Rao",
+        "patientId": "PT-1006",
+        "doctorId": "neha-sharma",
+        "concern": "Follow-up",
+        "symptoms": "Sample concern",
+        "time": "2 hours ago",
+        "status": "Pending"
+      }
+    ],
+    "mockTreatmentPlans": [
+      {
+        "id": "TP-001",
+        "patient": "Rahul Mehta",
+        "title": "Restorative care plan",
+        "completed": 2,
+        "total": 3,
+        "steps": [
+          "Consultation",
+          "Root Canal",
+          "Crown fitting"
+        ],
+        "status": "In Progress",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1004"
+      },
+      {
+        "id": "TP-002",
+        "patient": "Ananya Singh",
+        "title": "Orthodontic care plan",
+        "completed": 1,
+        "total": 4,
+        "steps": [
+          "Assessment",
+          "Braces fitting",
+          "Review",
+          "Retention"
+        ],
+        "status": "In Progress",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1005"
+      },
+      {
+        "id": "TP-003",
+        "patient": "Aditi Verma",
+        "title": "Preventive care plan",
+        "completed": 2,
+        "total": 2,
+        "steps": [
+          "Examination",
+          "Teeth Cleaning"
+        ],
+        "status": "Completed",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1002"
+      },
+      {
+        "id": "TP-004",
+        "patient": "Vikram Rao",
+        "patientId": "PT-1006",
+        "doctorId": "neha-sharma",
+        "title": "Endodontic review plan",
+        "completed": 1,
+        "total": 2,
+        "steps": [
+          "Consultation",
+          "Review"
+        ],
+        "status": "In Progress"
+      }
+    ],
+    "mockInvoices": [
+      {
+        "id": "INV-1001",
+        "patient": "Rohan Kapoor",
+        "treatment": "Consultation",
+        "date": "23 Apr",
+        "amount": 800,
+        "status": "Paid",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1001"
+      },
+      {
+        "id": "INV-1002",
+        "patient": "Aditi Verma",
+        "treatment": "Teeth Cleaning",
+        "date": "23 Apr",
+        "amount": 1500,
+        "status": "Paid",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1002"
+      },
+      {
+        "id": "INV-1003",
+        "patient": "Neha Shah",
+        "treatment": "Filling",
+        "date": "23 Apr",
+        "amount": 2000,
+        "status": "Pending",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1003"
+      },
+      {
+        "id": "INV-1004",
+        "patient": "Rahul Mehta",
+        "treatment": "Root Canal",
+        "date": "23 Apr",
+        "amount": 5000,
+        "status": "Pending",
+        "doctorId": "arjun-mehta",
+        "patientId": "PT-1004"
+      },
+      {
+        "id": "INV-1005",
+        "patient": "Vikram Rao",
+        "patientId": "PT-1006",
+        "doctorId": "neha-sharma",
+        "treatment": "Consultation",
+        "date": "23 Apr",
+        "amount": 800,
+        "status": "Pending"
+      }
+    ],
+    "practiceTrend": [
+      {
+        "month": "Jul",
+        "appointments": 8,
+        "revenue": 6400
+      },
+      {
+        "month": "Aug",
+        "appointments": 9,
+        "revenue": 7200
+      },
+      {
+        "month": "Sep",
+        "appointments": 9,
+        "revenue": 7200
+      },
+      {
+        "month": "Oct",
+        "appointments": 10,
+        "revenue": 8000
+      },
+      {
+        "month": "Nov",
+        "appointments": 11,
+        "revenue": 8800
+      },
+      {
+        "month": "Dec",
+        "appointments": 12,
+        "revenue": 9300
+      }
+    ]
+  },
+  "mockUsers": {
+    "mockUsers": [
+      {
+        "id": "demo-super-admin",
+        "name": "Super Admin",
+        "email": "admin@dentiq.com",
+        "role": "super-admin"
+      },
+      {
+        "id": "demo-doctor",
+        "name": "Dr. Arjun Mehta",
+        "email": "doctor@dentiq.com",
+        "role": "doctor",
+        "doctorId": "arjun-mehta"
+      },
+      {
+        "id": "demo-patient",
+        "name": "Rohan Kapoor",
+        "email": "patient@dentiq.com",
+        "role": "patient",
+        "patientId": "PT-1001"
+      }
+    ]
+  }
+}

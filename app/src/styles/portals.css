@@ -1,0 +1,41 @@
+.portal-signout { display: inline-flex; align-items: center; gap: 7px; padding: 0; background: transparent; border: 0; color: inherit; cursor: pointer; font: inherit; text-align: left; }
+.portal-links .portal-signout { color: #D6EBE9; font-size: 11px; }
+.portal-links .portal-signout:hover { color: #34D399; }
+.profile-menu .portal-signout { font-size: 11px; }
+.super-admin-shell .sidebar-brand .brand { font-size: 21px; }
+.super-admin-shell .treatment-track { display: block; height: 4px; border-radius: 4px; background: var(--tint); margin-top: 7px; overflow: hidden; }
+.super-admin-shell .treatment-track i { display: block; height: 100%; border-radius: 4px; background: var(--primary); }
+.directory-management { margin: 24px 0; padding: 18px 0; border-top: 1px solid var(--border); }
+.directory-management h3 { font-size: 14px; margin: 0; }
+.demo-account-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-bottom: 12px; }
+.demo-account-picker button { padding: 9px 5px; border: 1px solid var(--border); background: var(--surface); border-radius: 8px; color: var(--body-text); font-size: 11px; cursor: pointer; }
+.demo-account-picker button.selected { background: var(--tint); border-color: var(--primary); color: var(--primary-text); font-weight: 650; }
+.demo-session-note { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 11px; }
+.access-public-link { margin-top: 20px; }
+.chat-guidance-label { color: var(--primary-text); background: var(--tint); padding: 8px 11px; border-radius: 8px; font-size: 10px; font-weight: 600; margin-bottom: 10px; }
+.dental-safety-note { margin-bottom: 17px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.dental-safety-note summary { cursor: pointer; color: var(--body-text); }
+.dental-safety-note summary > svg { vertical-align: middle; margin-right: 4px; color: #B97908; }
+.dental-safety-note p { margin-top: 10px; }
+.dental-safety-note a, .dental-emergency a { text-decoration: underline; text-underline-offset: 2px; font-size: 10px; }
+.dental-emergency { padding: 15px; margin: 17px 0; border: 1px solid var(--error-border); border-radius: 11px; background: var(--error-bg); color: var(--error); }
+.dental-emergency h2 { display: flex; align-items: center; gap: 7px; font-size: 14px; color: inherit; margin: 0 0 10px; }
+.dental-emergency h2 svg { flex-shrink: 0; }
+.dental-emergency p { font-size: 12px; line-height: 1.8; margin: 0 0 10px; }
+.chat-quick-options { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 5px 44px; }
+.chat-quick-options button { border: 1px solid var(--story-border); border-radius: 14px; padding: 8px 10px; font-size: 11px; color: var(--primary-text); background: var(--story-bg); cursor: pointer; }
+.chat-messages + .symptom-card { margin-top: 18px; }
+.specialization-card { padding: 17px 14px; margin-top: 18px; border: 1px solid var(--story-border); border-radius: 12px; background: var(--story-bg); }
+.specialization-card h2 { font-size: 14px; margin: 0 0 11px; }
+.specialization-card > div { display: flex; flex-wrap: wrap; gap: 7px; }
+.specialization-card > div > span { font-size: 11px; background: var(--tint); padding: 6px 8px; border-radius: 6px; color: var(--primary-text); font-weight: 600; }
+.specialization-card p { font-size: 12px; line-height: 1.7; margin: 13px 0 10px; }
+.specialization-card small { display: block; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.specialization-card .p-button { display: flex; width: 100%; margin-top: 15px; }
+.matching-guidance { margin: -2px 0 17px; color: var(--body-text); font-size: 11px; line-height: 1.8; }
+.patient-bottom-nav { grid-template-columns: repeat(5, 1fr); }
+.patient-account-note { padding: 23px 5px 10px; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.patient-account-note > svg { color: var(--primary); }
+.patient-account-note .p-button { width: 100%; }
+@media (min-width: 761px) and (max-height: 900px) { .login-content .demo-credentials { padding-block: 8px; margin-bottom: 13px; } .login-content .social-button { font-size: 9px; } }
+@media (max-width: 360px) { .demo-account-picker { gap: 5px; } .demo-account-picker button { font-size: 10px; } .patient-bottom-nav a { font-size: 8px; } }

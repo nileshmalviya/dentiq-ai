@@ -1,0 +1,20 @@
+{
+  "name": "dentiq-ai",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "node dev.mjs",
+    "dev:api": "npm --prefix api run dev",
+    "dev:app": "npm --prefix app run dev",
+    "build": "npm run build:api && npm run build:app",
+    "build:api": "npm --prefix api run build",
+    "build:app": "npm --prefix app run build",
+    "typecheck": "npm --prefix api run typecheck && npm --prefix app run typecheck",
+    "seed": "npm --prefix api run seed",
+    "setup": "npm install --prefix api && npm install --prefix app"
+  }
+}

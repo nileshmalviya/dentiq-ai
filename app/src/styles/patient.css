@@ -1,0 +1,219 @@
+.patient-stage { height: 100dvh; min-height: 0; display: flex; flex-direction: column; align-items: center; padding: 18px 24px 10px; background: radial-gradient(ellipse at 50% 32%, var(--tint), var(--page) 62%); overflow: hidden; }
+.patient-desktop-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; width: 100%; max-width: 1160px; margin-bottom: 18px; flex-shrink: 0; color: var(--muted); font-size: 11px; }
+.patient-desktop-bar > div { display: flex; gap: 20px; }
+.patient-desktop-bar a { display: inline-flex; gap: 5px; align-items: center; color: var(--primary-text); font-weight: 500; }
+.patient-device { width: 100%; max-width: 430px; flex: 1; min-height: 0; max-height: 850px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 4px 7px rgba(15,45,58,.07), 0 18px 60px rgba(15,45,58,.04); display: flex; flex-direction: column; overflow: hidden; }
+.patient-screen { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.patient-header { display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 15px 17px; border-bottom: 1px solid var(--border); background: var(--surface); position: relative; z-index: 10; }
+.patient-home-header { justify-content: space-between; border-bottom: 0; padding-inline: 21px; }
+.patient-home-header .brand { font-size: 22px; gap: 7px; }
+.patient-home-header .brand-mark { width: 27px; height: 30px; }
+.patient-home-header .brand-mark svg { width: 25px; height: 28px; }
+.patient-header-actions { display: flex; align-items: center; gap: 13px; }
+.patient-heading { flex: 1; min-width: 0; }
+.patient-heading h1 { margin: 0; font-size: 18px; line-height: 1.35; letter-spacing: -.5px; }
+.patient-heading p { margin: 3px 0 0; font-size: 10px; line-height: 1.5; }
+.patient-heading p b { color: var(--primary-text); }
+.patient-home-body { padding: 0 13px 15px; }
+.patient-hero { position: relative; padding: 19px 14px 14px; overflow: hidden; background: linear-gradient(110deg, #C9F8ED 6%, #AAF3E3 53%, #5DEBCB 100%); border-radius: 3px 3px 13px 13px; color: #092733; }
+.patient-hero > div:first-child { position: relative; z-index: 1; }
+.patient-hero > div:first-child > span { font-size: 12px; font-weight: 500; }
+.patient-hero h1 { font-size: 26px; letter-spacing: -.9px; line-height: 1.17; margin: 5px 0 25px; color: #092733; }
+.hero-tooth { position: absolute; right: -1px; top: 9px; width: 147px; height: 126px; object-fit: cover; mix-blend-mode: normal; border-radius: 55%; }
+.hero-sparkle { position: absolute; right: 139px; top: 35px; color: white; }
+.patient-shortcuts { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+.patient-shortcuts a { background: rgba(255,255,255,.93); border: 1px solid rgba(210,225,224,.9); border-radius: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 3px 9px; box-shadow: 0 2px 3px rgba(15,45,58,.1); }
+.patient-shortcuts a > svg { color: #00B766; }
+.patient-shortcuts span { color: #0F2D3A; font-weight: 600; font-size: 10px; white-space: nowrap; }
+.patient-shortcuts a:hover { transform: translateY(-2px); background: white; }
+.ask-ai-banner { display: flex; align-items: center; gap: 11px; padding: 12px 13px; margin: 15px 2px 12px; border-radius: 13px; color: white; background: linear-gradient(115deg, #00A67E, #007C4F); }
+.ask-ai-banner h2 { font-size: 16px; line-height: 1.35; color: white; margin: 0 0 3px; }
+.ask-ai-banner p { margin: 0; font-size: 11px; line-height: 1.35; }
+.assistant-mascot { position: relative; width: 50px; height: 50px; display: grid; place-items: center; flex-shrink: 0; background: linear-gradient(125deg, #B6FFE5, #25CF9B); border-radius: 50%; }
+.assistant-mascot > svg { width: 36px; height: 42px; color: white; fill: white; filter: drop-shadow(0 3px 2px rgba(15,45,58,.2)); }
+.assistant-mascot > i { width: 5px; height: 5px; background: #0F2D3A; border-radius: 50%; position: absolute; top: 21px; left: 19px; box-shadow: 9px 0 #0F2D3A; }
+.ask-arrow { width: 30px; height: 30px; display: grid; place-items: center; margin-left: auto; flex-shrink: 0; color: #00895F; border-radius: 50%; background: white; }
+.popular-services { padding: 0 3px; }
+.popular-services h2 { font-size: 16px; letter-spacing: -.4px; margin: 0 0 9px; }
+.service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.service-grid > a, .service-grid > button { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-height: 78px; padding: 8px 2px; background: var(--surface); border: 1px solid var(--border); border-radius: 11px; color: #00AB75; }
+.service-grid > :hover { background: var(--story-bg); border-color: #34D399; }
+.service-grid span { font-size: 9px; font-weight: 500; color: var(--text); text-align: center; }
+.service-grid > button { color: var(--muted); }
+.home-care-note { display: flex; align-items: center; justify-content: center; gap: 5px; color: var(--muted); font-size: 10px; margin-top: 19px; }
+.home-care-note svg { color: var(--primary); }
+.patient-bottom-nav { height: 62px; flex-shrink: 0; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--surface); border-top: 1px solid var(--border); z-index: 5; padding: 6px 8px; }
+.patient-bottom-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text); font-size: 9px; font-weight: 500; }
+.patient-bottom-nav a.active { color: #009A5E; font-weight: 700; }
+.patient-bottom-nav a.active > svg { fill: #009A5E; stroke: var(--surface); }
+.patient-demo-label { color: var(--muted); font-size: 10px; margin: 10px 0 0; flex-shrink: 0; }
+.patient-page-body { padding: 18px; }
+.matching-banner { background: linear-gradient(105deg, var(--story-bg), var(--tint)); padding: 16px 14px; display: flex; align-items: flex-start; gap: 12px; border-radius: 11px; margin-bottom: 18px; }
+.matching-banner > svg { flex-shrink: 0; color: #009E63; }
+.matching-banner h2 { font-size: 15px; margin: 0 0 3px; }
+.matching-banner p { font-size: 12px; line-height: 1.45; margin: 0; }
+.matching-banner small { display: block; margin-top: 7px; font-size: 9px; color: var(--muted); }
+.patient-page-body > .p-search { max-width: none; }
+.doctor-card { padding: 22px 0 18px; border-bottom: 1px solid var(--border); }
+.doctor-card:last-child { border: 0; }
+.doctor-card-main { display: flex; gap: 12px; align-items: flex-start; }
+.doctor-card-main .avatar-large { width: 63px; height: 63px; }
+.doctor-card-main > div { min-width: 0; flex: 1; padding-top: 3px; }
+.doctor-name { display: flex; align-items: center; gap: 5px; font-size: 16px; font-weight: 700; letter-spacing: -.4px; }
+.doctor-card-main p { font-size: 10px; margin: 2px 0 9px; }
+.doctor-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 7px; }
+.doctor-card-meta > span:last-child { display: inline-flex; align-items: center; gap: 2px; font-size: 9px; white-space: nowrap; }
+.doctor-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
+.availability-label { font-size: 10px; font-weight: 600; padding: 7px 8px; border-radius: 6px; color: var(--primary-text); background: var(--tint); }
+.chat-device .patient-screen { overflow: hidden; }
+.chat-page { height: 100%; display: flex; flex-direction: column; }
+.chat-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 17px 16px 12px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.chat-messages { display: grid; gap: 16px; }
+.chat-row { display: flex; align-items: flex-start; gap: 11px; }
+.ai-avatar { width: 33px; height: 33px; display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; font-weight: 700; font-size: 15px; color: #008E55; background: #A0F9D4; }
+.chat-row p { padding: 13px; margin: 0; background: var(--page); border: 1px solid var(--border); border-radius: 0 16px 16px 16px; white-space: pre-line; font-size: 12px; line-height: 1.5; max-width: calc(100% - 44px); }
+.chat-row.user { justify-content: flex-end; }
+.chat-row.user p { color: white; background: linear-gradient(100deg, #00A96D, #008957); border: 0; border-radius: 16px 16px 0 16px; max-width: 85%; }
+.symptom-card { background: var(--page); border: 1px solid var(--border); border-radius: 16px; margin-left: 44px; padding: 14px; }
+.symptom-card p { font-size: 12px; line-height: 1.5; margin: 0 0 14px; font-weight: 500; }
+.symptom-card p span { font-weight: 400; }
+.symptom-card > div { display: grid; gap: 12px; }
+.symptom-card label { display: flex; gap: 10px; align-items: center; font-size: 12px; cursor: pointer; }
+.symptom-card input { width: 17px; height: 17px; }
+.chat-recommendations { margin: 17px 0 0 44px; width: calc(100% - 44px); font-size: 11px; }
+.chat-composer-wrap { border-top: 1px solid var(--border); padding: 13px 14px; flex-shrink: 0; background: var(--surface); }
+.chat-composer { display: flex; gap: 9px; }
+.chat-composer > div { display: flex; align-items: center; flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: 24px; background: var(--page); padding: 4px 6px 4px 13px; }
+.chat-composer input:not([type="file"]) { width: 100%; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--text); font-size: 12px; }
+.chat-composer > div:focus-within { outline: 2px solid var(--primary); }
+.chat-send { background: #00A67E; color: white; display: grid; place-items: center; border: 0; border-radius: 50%; width: 41px; height: 41px; align-self: center; flex-shrink: 0; }
+.attachment-notice { margin: 0 0 9px; font-size: 10px; color: var(--primary-text); overflow-wrap: anywhere; }
+.attachment-notice span { color: var(--muted); }
+.doctor-profile { display: flex; min-height: 100%; flex-direction: column; }
+.doctor-hero { height: 204px; flex-shrink: 0; position: relative; margin: 10px 10px 0; border-radius: 13px 13px 0 0; overflow: hidden; background: var(--tint); }
+.doctor-hero > img { width: 100%; height: 100%; object-fit: cover; object-position: center 29%; }
+.doctor-hero > .p-icon-button { background: var(--surface); position: absolute; top: 12px; left: 12px; border-radius: 50%; }
+.doctor-hero > .favorite-button { right: 12px; left: auto; }
+.favorite-button.is-saved { color: #00A67E; }
+.doctor-profile-info { padding: 14px 18px 12px; background: var(--surface); margin-top: -9px; border-radius: 14px 14px 0 0; z-index: 1; }
+.doctor-profile-info h1 { font-size: 25px; line-height: 1.3; display: flex; align-items: center; gap: 7px; margin: 0 0 2px; letter-spacing: -.8px; }
+.profile-verified { color: #0088C4; }
+.profile-verified path { stroke: white; }
+.doctor-profile-info > p { font-size: 12px; margin-bottom: 10px; }
+.doctor-profile-info > div { display: flex; align-items: center; gap: 24px; }
+.experience-label { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; }
+.patient-tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); padding: 0 16px; }
+.patient-tabs button { padding: 12px 0 10px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--body-text); font-weight: 500; font-size: 12px; }
+.patient-tabs button.active { border-bottom-color: #0F2D3A; color: var(--text); font-weight: 700; }
+[data-theme="dark"] .patient-tabs button.active { border-bottom-color: #34D399; }
+.profile-tab-content { padding: 16px 18px 18px; flex: 1; }
+.profile-tab-content h2 { font-size: 15px; margin: 0 0 6px; }
+.profile-tab-content > p { font-size: 12px; line-height: 1.5; margin: 0 0 16px; }
+.doctor-credentials { display: grid; gap: 10px; }
+.doctor-credentials > div { display: flex; align-items: center; gap: 12px; }
+.doctor-credentials > div > span { width: 31px; height: 31px; border-radius: 8px; display: grid; place-items: center; background: var(--story-bg); color: var(--primary-text); flex-shrink: 0; }
+.doctor-credentials p { font-size: 12px; line-height: 1.7; margin: 0; }
+.clinic-location { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; margin-top: 18px; }
+.patient-bottom-action { position: sticky; bottom: 0; padding: 11px 16px 16px; background: var(--surface); border-top: 1px solid var(--border); }
+.patient-bottom-action > .p-button { width: 100%; }
+.treatments-list { margin-top: 12px; }
+.treatments-list a { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.treatments-list a > svg:first-child { color: var(--primary); width: 20px; height: 22px; }
+.treatments-list a > svg:last-child { margin-left: auto; color: var(--muted); }
+.review-list article { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.review-list article > div { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 11px; }
+.review-list article > div > span:last-child { margin-left: auto; color: var(--muted); }
+.review-list article > p { font-size: 12px; line-height: 1.6; color: var(--body-text); margin: 7px 0 0; }
+.booking-page { display: flex; flex-direction: column; min-height: calc(100% - 68px); }
+.booking-doctor { display: flex; align-items: center; gap: 13px; margin: 0 0 23px; }
+.booking-doctor .avatar-large { border-radius: 12px; width: 60px; height: 60px; }
+.booking-doctor h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -.3px; }
+.booking-doctor p { font-size: 10px; margin: 0; }
+.booking-section { margin-bottom: 23px; }
+.booking-section h2 { margin: 0 0 10px; font-size: 14px; letter-spacing: -.25px; }
+.booking-section h2 small { font-size: 9px; color: var(--muted); font-weight: 400; float: right; padding-top: 4px; }
+.date-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+.date-options button, .time-options button { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 9px; padding: 10px 3px; min-height: 40px; font-size: 11px; }
+.date-options span, .date-options strong { display: block; font-size: 11px; }
+.date-options strong { font-size: 11px; font-weight: 600; margin-top: 3px; }
+.time-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+.date-options button.selected, .time-options button.selected { color: white; border-color: #00A67E; background: linear-gradient(120deg, #00BA74, #008F50); }
+.date-options button:hover, .time-options button:hover { border-color: var(--primary); }
+.consultation-fee { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; font-size: 12px; }
+.booking-confirm-action { margin-top: auto; padding-top: 24px; }
+.booking-confirm-action > .p-button { width: 100%; }
+.booking-confirm-action > p { font-size: 9px; color: var(--muted); text-align: center; margin: 10px 0 0; }
+.confirmation-summary { text-align: center; }
+.confirmation-summary > .p-avatar { margin: 0 auto 10px; }
+.confirmation-summary h3 { font-size: 18px; margin: 0 0 10px; }
+.confirmation-summary > p { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; color: var(--primary-text); }
+.confirmation-summary > div { display: flex; justify-content: space-between; padding: 17px 0; border-block: 1px solid var(--border); margin: 20px 0; }
+.confirmation-summary small { color: var(--muted); display: block; font-size: 11px; line-height: 1.7; margin-bottom: 20px; }
+.booking-success { text-align: center; padding: 22px 8px; display: flex; flex-direction: column; align-items: center; }
+.booking-success > svg { color: var(--primary); margin-bottom: 16px; }
+.booking-success h2 { font-size: 22px; margin-bottom: 12px; }
+.booking-success p { font-size: 13px; line-height: 1.8; }
+.booking-success > span { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.booking-success .p-button { width: 100%; margin: 24px 0 15px; }
+.patient-inset { margin: 15px 20px; display: flex; }
+.records-intro { padding: 13px 6px 21px; text-align: center; }
+.record-heart { display: grid; place-items: center; width: 57px; height: 57px; border-radius: 16px; background: var(--tint); color: var(--primary-text); margin: 0 auto 14px; }
+.records-intro h2 { font-size: 20px; margin: 0 0 7px; letter-spacing: -.6px; }
+.records-intro p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.7; }
+.record-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 18px; }
+.record-filters button { border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--muted); padding: 7px 9px; font-size: 10px; }
+.record-filters button.active { color: var(--primary-text); border-color: var(--story-border); background: var(--tint); }
+.records-list { display: grid; gap: 11px; }
+.records-list button { width: 100%; display: flex; align-items: center; text-align: left; gap: 10px; padding: 15px 12px; border: 1px solid var(--border); border-radius: 11px; background: var(--surface); color: var(--text); }
+.records-list button > span { width: 36px; height: 40px; border-radius: 9px; display: grid; place-items: center; color: var(--primary-text); background: var(--tint); flex-shrink: 0; }
+.records-list button > div { display: grid; gap: 4px; }
+.records-list strong { font-size: 12px; font-weight: 600; }
+.records-list small { font-size: 10px; color: var(--body-text); }
+.records-list button > div > span { font-size: 9px; color: var(--muted); }
+.records-list button > svg { margin-left: auto; color: var(--muted); }
+.patient-info-note { display: flex; gap: 8px; padding: 17px 4px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.patient-info-note > svg { flex-shrink: 0; color: var(--primary); }
+.record-detail p { color: var(--muted); line-height: 1.8; }
+.record-detail dl > div { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+.record-detail dt { color: var(--muted); }
+.record-detail dd { margin: 0; }
+.patient-profile-card { text-align: center; padding: 12px 8px 22px; }
+.patient-profile-card > .p-avatar { margin: 0 auto 12px; }
+.patient-profile-card h2 { font-size: 22px; margin: 0 0 4px; letter-spacing: -.7px; }
+.patient-profile-card > p { font-size: 12px; color: var(--muted); margin: 0 0 6px; }
+.patient-profile-card > span { display: block; font-size: 10px; color: var(--primary-text); }
+.patient-profile-card > .p-button { margin-top: 16px; min-height: 34px; padding: 7px 20px; }
+.profile-options { border: 1px solid var(--border); border-radius: 11px; overflow: hidden; }
+.profile-options > button, .profile-options > div { display: flex; align-items: center; gap: 11px; width: 100%; padding: 14px; border: 0; border-bottom: 1px solid var(--border); background: var(--surface); color: var(--body-text); font-size: 12px; }
+.profile-options > :last-child { border-bottom: 0; }
+.profile-options > :is(button,div) > svg:first-child { color: var(--primary-text); }
+.profile-options > :is(button,div) > :last-child { margin-left: auto; }
+.explore-portals { padding: 22px 2px 8px; }
+.explore-portals h3 { font-size: 14px; margin: 0 0 4px; }
+.explore-portals > p { font-size: 11px; color: var(--muted); }
+.explore-portals > a { display: flex; align-items: center; gap: 10px; padding: 12px 0; color: var(--body-text); font-size: 12px; }
+.explore-portals > a > svg:first-child { color: var(--primary-text); }
+.explore-portals > a > svg:last-child { margin-left: auto; }
+@media (max-width: 600px) {
+  .patient-stage { padding: 0; background: var(--surface); }
+  .patient-desktop-bar, .patient-demo-label { display: none; }
+  .patient-device { max-width: 440px; max-height: none; height: 100%; border-radius: 0; border: 0; box-shadow: none; }
+  .patient-bottom-nav { padding-bottom: max(6px, env(safe-area-inset-bottom)); height: calc(62px + env(safe-area-inset-bottom)); }
+  .chat-composer-wrap { padding-bottom: max(13px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 360px) {
+  .patient-page-body { padding: 15px 13px; }
+  .patient-hero h1 { font-size: 23px; }
+  .hero-tooth { width: 120px; height: 105px; top: 16px; }
+  .patient-shortcuts { gap: 6px; }
+  .patient-shortcuts span { font-size: 9px; }
+  .doctor-name { font-size: 14px; }
+  .doctor-card-main { gap: 9px; }
+  .doctor-card-main .avatar-large { width: 51px; height: 51px; }
+  .doctor-card-main .rating { font-size: 10px; gap: 3px; }
+  .doctor-card-main .rating > span { font-size: 8px; }
+  .availability-label { font-size: 9px; padding: 6px; }
+  .doctor-card-bottom .p-button { padding-inline: 14px; }
+  .doctor-profile-info h1 { font-size: 22px; }
+  .doctor-profile-info > div { gap: 14px; }
+}

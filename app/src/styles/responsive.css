@@ -1,0 +1,86 @@
+.page-heading > div:first-child, .p-form, .p-form > label, .p-form-grid > label { min-width: 0; }
+body { min-width: 0; }
+.sr-only { left: 0; top: 0; }
+.p-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.p-form input, .p-form select, .p-form textarea { min-inline-size: 0; max-width: 100%; }
+.note-grid h2, .plan-grid h2, .settings-avatar strong { overflow-wrap: anywhere; }
+.p-modal { overscroll-behavior: contain; }
+.p-modal h2 { overflow-wrap: anywhere; }
+.donut-wrap { max-width: 100%; }
+.local-notice { overflow-wrap: anywhere; }
+@media (min-width: 768px) and (max-width: 1023px) { .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .note-grid, .plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1023px) {
+  .dashboard-sidebar { width: min(285px, calc(100vw - 40px)); flex-basis: 285px; transform: translateX(-100%); transition: transform .2s; z-index: 100; }
+  .dashboard-sidebar.is-open { transform: translateX(0); }
+  .dashboard-workspace { width: 100%; margin-left: 0; }
+  .menu-toggle, .sidebar-close { display: inline-flex; }
+  .sidebar-close { position: absolute; right: 0; top: 0; color: white; }
+  .sidebar-backdrop { position: fixed; inset: 0; border: 0; background: rgba(5,30,40,.5); z-index: 95; }
+  .sidebar-brand { padding-right: 24px; }
+  .topbar-leading > span { display: none; }
+  .dashboard-topbar { height: auto; min-height: 68px; padding: 10px 16px; }
+  .dashboard-nav-link { min-height: 44px; }
+  .platform .p-icon-button, .platform .theme-toggle { min-width: 44px; width: 44px; height: 44px; }
+  .profile-menu-trigger { min-width: 44px; min-height: 44px; }
+  .platform .p-button { min-height: 44px; }
+  .platform .p-text-link, .portal-signout { min-height: 40px; }
+  .sortable-heading { min-height: 44px; }
+  .data-filter select, .data-filter input, .data-table-toolbar .p-search input { min-height: 44px; height: 44px; }
+  .page-size select { min-height: 40px; }
+  .pagination-buttons button { min-width: 40px; height: 40px; }
+  .pagination-buttons { gap: 5px; }
+  .skip-link { left: 15px; }
+}
+@media (max-width: 767px) {
+  .note-grid, .plan-grid, .dashboard-secondary-grid { grid-template-columns: minmax(0, 1fr); }
+  .dashboard-content { padding: 22px 16px; }
+  .table-toolbar-actions { margin-left: 0; }
+  .patient-tabs button { min-height: 44px; }
+  .date-options button, .time-options button { min-height: 44px; }
+  .record-filters button { min-height: 40px; }
+  .chat-quick-options button { min-height: 40px; }
+  .patient-bottom-nav a { min-height: 46px; }
+  .patient-heading h1 { font-size: 17px; }
+  .patient-heading p { overflow-wrap: anywhere; }
+}
+@media (max-width: 600px) {
+  .p-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .data-table-toolbar { padding: 13px; gap: 10px; }
+  .data-table-toolbar > .p-search { flex-basis: 100%; max-width: none; }
+  .data-filter { flex: 1 1 140px; }
+  .data-filter select { max-width: none; width: 100%; }
+  .data-filter.date-filter { flex-basis: 100%; }
+  .date-filter input { flex: 1; }
+  .data-table-pagination { padding: 13px; gap: 12px; }
+  .pagination-buttons { justify-content: center; width: 100%; }
+  .page-size { margin-left: auto; }
+  .patient-appointment-history .data-filter { flex-basis: 100%; }
+  .patient-appointment-history .compact-data-table .p-search { flex-basis: 100%; }
+  .doctor-overview-grid .p-table { min-width: 0; }
+  .p-modal { padding: 20px; width: calc(100% - 24px); max-height: calc(100dvh - 24px); }
+}
+@media (max-width: 480px) {
+  .dashboard-topbar { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: start; gap: 10px; }
+  .topbar-actions { min-width: 0; margin-left: 0; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .topbar-search { order: 2; width: 100%; flex-basis: 100%; border: 1px solid var(--border); border-radius: 8px; padding-left: 10px; }
+  .topbar-search input { flex: 1; width: 100%; min-width: 0; height: 40px; padding: 7px 0; font-size: 11px; }
+  .dashboard-topbar .theme-toggle { width: 44px; height: 44px; }
+  .notification-menu { position: fixed; top: 65px; left: 12px; right: 12px; width: auto; max-width: none; }
+  .profile-menu { max-width: calc(100vw - 32px); }
+  .patient-header { gap: 8px; padding-inline: 12px; }
+  .patient-header .p-text-link { max-width: 75px; font-size: 10px; flex-shrink: 0; }
+  .chat-scroll { padding-inline: 12px; }
+  .symptom-card { margin-left: 0; }
+  .chat-recommendations { width: 100%; margin-left: 0; }
+  .chart-legend > span { white-space: nowrap; }
+  .doctor-overview-grid > .p-panel:last-child .utilization-chart { gap: 15px; padding-inline: 8px; }
+  .donut-wrap { width: 135px; height: 135px; flex-shrink: 0; }
+}
+@media (max-width: 360px) {
+  .stat-card { flex-direction: column; gap: 8px; }
+  .inventory-summary .stat-card { flex-direction: row; align-items: center; }
+  .page-size { margin-left: 0; }
+  .data-table-pagination { align-items: flex-start; }
+  .doctor-overview-grid > .p-panel:last-child .utilization-chart { flex-direction: column; gap: 5px; }
+  .patient-header .patient-heading { min-width: 0; }
+}
