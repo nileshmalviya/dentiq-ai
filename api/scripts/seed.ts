@@ -4,8 +4,9 @@ import bcrypt from 'bcryptjs';
 import { resolve } from 'node:path';
 import { readEnv } from '../src/config/env.js';
 import { connectDatabase, disconnectDatabase } from '../src/config/database.js';
-import { ensureIndexes, repositories } from '../src/modules/resources/resource.repository.js';
-import { definitions, type Resource } from '../src/modules/resources/resource.validation.js';
+import { ensureIndexes } from '../src/repositories/resource.repository.js';
+import { repositories } from '../src/container/repositories.js';
+import { definitions, type Resource } from '../src/validations/resource.validation.js';
 export async function seedFixtures(passwords: {
     admin: string;
     doctor: string;

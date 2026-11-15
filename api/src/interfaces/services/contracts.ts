@@ -1,0 +1,17 @@
+import type { AuthService } from '../../services/auth.service.js';
+import type { ResourceService } from '../../services/resource.service.js';
+import type { AppointmentService } from '../../services/appointment.service.js';
+import type { InventoryService } from '../../services/inventory.service.js';
+import type { PatientService } from '../../services/patient.service.js';
+import type { PublicService } from '../../services/public.service.js';
+import type { DashboardService } from '../../services/dashboard.service.js';
+import type { ChatService } from '../../services/aiChat.service.js';
+export type AuthContract = Pick<AuthService, 'register' | 'login' | 'refresh' | 'logout' | 'me' | 'authenticate' | 'forgotPassword'>;
+export type ResourceContract = Pick<ResourceService, 'list' | 'summary' | 'get' | 'create' | 'update' | 'remove'>;
+export type AppointmentContract = ResourceContract & Pick<AppointmentService, 'availability' | 'book' | 'changeStatus'>;
+export type InventoryContract = ResourceContract & Pick<InventoryService, 'adjust' | 'listByView'>;
+export type PatientContract = ResourceContract & Pick<PatientService, 'favorites' | 'saveDoctor'>;
+export type PublicContract = Pick<PublicService, 'list' | 'doctor'>;
+export type DashboardContract = Pick<DashboardService, 'calculate'>;
+export type ChatContract = Pick<ChatService, 'message' | 'conversation'>;
+export type RecommendationContract = Pick<import('../../services/recommendation.service.js').RecommendationService, 'recommend'>;

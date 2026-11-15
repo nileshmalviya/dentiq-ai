@@ -1,5 +1,5 @@
 import { useAuth } from "../../auth/useAuth";
-import { useResourceRows, useResource, usePortalEndpoint, copyRemote } from "../../api/hooks";
+import { useResourceRows, useResource, usePortalEndpoint, copyRemote } from "../../hooks/useResource";
 import type { Doctor } from "../../data/doctors";
 import type { AssignedPatient } from "../../data/mockPatients";
 import type { mockClinicalNotes, mockConsultations, mockTreatmentPlans } from "../../data/mockClinicalData";

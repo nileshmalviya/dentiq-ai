@@ -1,4 +1,4 @@
-import { remoteMeta } from "../../../api/hooks";
+import { remoteMeta } from "../../../hooks/useResource";
 import { useEffect, useState } from "react";
 import type { TableColumn, TableController, TableFilter, TableSort, SortValue } from "./types";
 

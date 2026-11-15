@@ -1,5 +1,5 @@
 ﻿import { Area, AreaChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useDashboard } from "../../api/dashboard";
+import { useDashboard } from "../../hooks/useDashboard";
 type TrendPoint = {month:string;appointments:number;revenue:number};
 
 export function TrendChart({ data = [], revenue = false, practice: _practice = false }: { data?: TrendPoint[]; revenue?: boolean; practice?: boolean }) {

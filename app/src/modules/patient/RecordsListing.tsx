@@ -1,4 +1,4 @@
-import { useResourceRows } from "../../api/hooks";
+import { useResourceRows } from "../../hooks/useResource";
 import { useState } from "react";
 import { ChevronRight, Download, FileHeart, FileText, ShieldCheck } from "lucide-react";
 

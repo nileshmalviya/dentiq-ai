@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from "react";
 import type { InputHTMLAttributes, ReactNode } from "react";
 import { AlertCircle, CheckCircle2, Eye, EyeOff, Upload } from "lucide-react";
-import { policyUrl } from "./authService";
+import { policyUrl } from "../../services/auth.service";
 import { passwordRules } from "./validation";
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string; hint?: string; icon?: ReactNode; wide?: boolean };

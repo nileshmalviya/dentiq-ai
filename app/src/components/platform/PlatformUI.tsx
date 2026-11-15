@@ -1,5 +1,5 @@
 import { useAuth } from "../../auth/useAuth";
-import { useResourceRows } from "../../api/hooks";
+import { useResourceRows } from "../../hooks/useResource";
 import { useEffect, useId, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { ArrowLeft, Bell, CalendarDays, Check, CheckCircle2, ClipboardList, Clock3, Grid2X2, Hospital, Search, Sparkles, Star, Stethoscope, UsersRound, X } from "lucide-react";

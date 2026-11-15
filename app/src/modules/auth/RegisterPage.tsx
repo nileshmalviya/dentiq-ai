@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, LoaderCircle, Stethoscope, UserRound } from "lucide-react";
 import { Field, FormNotice, PasswordStrength, PolicyLink } from "./AuthFields";
-import { authService } from "./authService";
+import { authService } from "../../services/auth.service";
 import { focusFirstError } from "./validation";
 import type { Errors } from "./validation";
 

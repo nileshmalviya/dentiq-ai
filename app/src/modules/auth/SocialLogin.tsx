@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { authService } from "./authService";
+import { authService } from "../../services/auth.service";
 import { FormNotice } from "./AuthFields";
 
 function ProviderIcon({ provider }: { provider: "google" | "linkedin" | "facebook" }) {

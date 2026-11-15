@@ -114,7 +114,7 @@ The seed snapshot is stored entirely inside `api/scripts/seed-data.json`, so ord
 
 [API coverage](api/docs/api-coverage.md) maps the existing pages and actions. [OpenAPI](api/openapi.json) documents the endpoints. Regenerate the specification after building the API with `npm --prefix api run docs`.
 
-All database operations remain behind repository contracts. Services define authorization scopes, validation, filtering, sorting, pagination, aggregations and status transitions; route controllers handle HTTP requests and responses. The frontend's existing API client remains at `app/src/api/client.ts` and communicates only through REST calls. Existing internal frontend folders are retained to avoid unrelated import and routing changes.
+All database operations remain behind repository contracts. Services define authorization scopes, validation, filtering, sorting, pagination, aggregations and status transitions; route controllers handle HTTP requests and responses. The frontend's existing API client remains at `app/src/services/apiClient.ts` and communicates only through REST calls. Existing internal frontend folders are retained to avoid unrelated import and routing changes.
 
 JWT access tokens remain in memory; refresh sessions use hashed persisted tokens and HttpOnly cookies. Doctor and patient ownership checks are enforced by the API. Booking uses clinic-local slots with UTC storage and a unique doctor/slot index. Stock adjustments and their history share a transaction. Tables keep server-side search, filtering, sorting and pagination; CSV exports contain the current filtered page. Report revenue means completed appointment fees, not payment-gateway settlement.
 
@@ -128,3 +128,9 @@ The assistant provides rule-based guidance, not a diagnosis, and uses no paid AI
 - Inventory CRUD, concurrent stock-out validation, stock history, availability, concurrent booking, the shared appointment record across all portals, and cancellation passed in an isolated temporary Atlas database. That temporary database was removed afterward; the application's database was unchanged by verification.
 - TypeScript checks and production builds passed for both folders. No stale references to the former backend folder were found in the migrated sources or configuration.
 - Browser-based visual/mobile interaction checks were not run. Existing UI components, CSS and static assets were preserved; the prior Vite large-bundle warning remains.
+
+## Layer architecture
+
+Backend execution now follows Route -> Controller -> Service -> Repository -> MongoDB. Backend code is organized in controllers/, services/, repositories/, models/, routes/, interfaces/, validations/, middleware/, container/, config/, types/, utils/ and errors/ under api/src/. Frontend requests now pass through app/src/services/apiClient.ts and dedicated feature service files. UI hooks are in app/src/hooks/.
+
+See [backend architecture](api/docs/architecture.md) and [frontend API services](app/docs/api-services.md) for file responsibilities, endpoint coverage and the verification actually performed. Existing endpoints, models/indexes, routes, UI and business rules are retained. No dependencies were added.

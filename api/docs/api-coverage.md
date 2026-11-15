@@ -42,3 +42,5 @@ Paths below are relative to `/api/v1`. Common table controls send `page`, `limit
 Models use stable string IDs to preserve existing routes and seed relationships, with indexed reference fields. Medical records are never included in public doctor or guest booking responses.
 
 Browser-based visual/responsive verification has not been performed in this session.
+
+API request execution is now centralized under app/src/services; shared data hooks live in app/src/hooks/useResource.ts. See [backend architecture](architecture.md) and [frontend API service mapping](../../app/docs/api-services.md).

@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle2, KeyRound, LoaderCircle, Mail } from "lucide-react";
 import { Field, FormNotice } from "./AuthFields";
-import { authService } from "./authService";
+import { authService } from "../../services/auth.service";
 import { emailIsValid, focusFirstError } from "./validation";
 
 export function ForgotPasswordPage() {
