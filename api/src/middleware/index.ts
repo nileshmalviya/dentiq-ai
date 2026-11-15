@@ -35,6 +35,7 @@ export const identity = (auth: AuthService, required = true): RequestHandler => 
 export const authorize = (...roles: Role[]): RequestHandler => (req, _res, next) => {
     if (!req.actor || !roles.includes(req.actor.role))
         return next(new AppError(403, 'Access denied'));
+    if(req.actor.role==='DOCTOR'&&req.actor.doctorAccess===false)return next(new AppError(403,'Verify your email and obtain Super Admin approval before accessing the Doctor Portal'));
     next();
 };
 export const ok = (res: Response, data: unknown, status = 200, pagination?: unknown, filters?: unknown) => res.status(status).json({ success: true, message: 'Operation completed successfully', data, ...(pagination ? { pagination } : {}), ...(filters ? { filters } : {}) });
@@ -47,6 +48,8 @@ export const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
         res.status(422).json({ success: false, message: 'Validation failed', errors: error.issues.map(i => ({ path: i.path.join('.'), message: i.message })) });
         return;
     }
+    if(error?.code==='LIMIT_FILE_SIZE'){res.status(413).json({success:false,message:'Files must be at most 10 MB',errors:[]});return;}
+    if(error?.name==='MulterError'){res.status(422).json({success:false,message:'Invalid file upload',errors:[]});return;}
     if (error?.code === 11000) {
         res.status(409).json({ success: false, message: 'Record already exists or appointment slot was booked', errors: [] });
         return;

@@ -1,0 +1,379 @@
+.doctor-onboarding-panel {
+  align-items: flex-start;
+  padding: 36px 30px;
+}
+.doctor-registration {
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.auth-layout:has(.doctor-onboarding-panel) {
+  grid-template-columns: minmax(260px, 0.65fr) minmax(0, 1.35fr);
+}
+.doctor-registration h3,
+.doctor-review h3 {
+  font-size: 15px;
+  margin: 24px 0 14px;
+  color: var(--text);
+  text-transform: capitalize;
+}
+.registration-steps {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  gap: 8px;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+.registration-steps li {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.registration-steps li span {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+.registration-steps li.current {
+  color: var(--primary-text);
+  font-weight: 700;
+}
+.registration-steps .current span,
+.registration-steps .complete span {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.registration-form-body {
+  display: grid;
+  gap: 20px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.registration-form-body:disabled {
+  opacity: 0.7;
+}
+.registration-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 14px 0;
+}
+.registration-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.registration-field > label {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--body-text);
+}
+.registration-field > label > span {
+  color: var(--primary-text);
+}
+.registration-field input:not([type='checkbox']),
+.registration-field textarea,
+.registration-field select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg, var(--surface));
+  padding: 11px 12px;
+  color: var(--text);
+  font: inherit;
+}
+.registration-field input:focus,
+.registration-field textarea:focus,
+.registration-field select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.registration-field input[type='file'] {
+  font-size: 11px;
+}
+.registration-field small,
+.registration-help,
+.registration-form-body > small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.full-field {
+  grid-column: 1/-1;
+}
+.registration-choices {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px;
+}
+.registration-choices label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+.registration-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.registration-actions .auth-primary {
+  flex: 1;
+  min-width: 160px;
+}
+.registration-actions .p-button {
+  min-height: 43px;
+}
+.registration-notice {
+  padding: 12px 14px;
+  background: var(--tint);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin: 12px 0;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.registration-notice.is-error {
+  background: var(--surface);
+  color: var(--error, #b91c1c);
+  border-color: var(--error, #b91c1c);
+}
+.registration-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 24px 0 4px;
+  font-size: 12px;
+}
+.registration-footer a {
+  color: var(--primary-text);
+  font-weight: 650;
+}
+.otp-input {
+  font-size: 26px !important;
+  letter-spacing: 10px;
+  text-align: center;
+}
+.verification-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.verification-options > label {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.verification-options > label.selected {
+  border-color: var(--primary);
+  background: var(--tint);
+}
+.verification-options input {
+  position: absolute;
+  right: 14px;
+  top: 18px;
+}
+.verification-option-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: var(--tint);
+  color: var(--primary-text);
+  font-weight: 800;
+  font-size: 18px;
+}
+.verification-options small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.registration-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 16px 0 24px;
+}
+.registration-detail-grid > div {
+  min-width: 0;
+}
+.registration-detail-grid dt {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+.registration-detail-grid dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+.application-summary section {
+  border-bottom: 1px solid var(--border);
+}
+.registration-documents {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.registration-documents li {
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+}
+.registration-documents li span {
+  font-size: 11px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.registration-documents .p-button {
+  justify-self: start;
+}
+.registration-history {
+  list-style: none;
+  padding: 0;
+  max-height: 280px;
+  overflow: auto;
+}
+.registration-history li {
+  border-left: 2px solid var(--border);
+  padding: 10px 14px;
+  display: grid;
+  gap: 4px;
+}
+.registration-history strong {
+  font-size: 11px;
+}
+.registration-history span,
+.registration-history small {
+  font-size: 10px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.registration-history p {
+  margin: 0;
+  font-size: 12px;
+}
+.registration-row-actions {
+  display: flex;
+  gap: 7px;
+}
+.registration-row-actions .p-button {
+  font-size: 11px;
+  white-space: nowrap;
+  padding: 7px 10px;
+}
+.registration-status {
+  display: inline-flex;
+  border-radius: 5px;
+  padding: 5px 8px;
+  background: var(--page);
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status-APPROVED,
+.status-VERIFIED {
+  color: var(--primary-text);
+  background: var(--tint);
+}
+.status-PENDING,
+.status-DRAFT,
+.status-UNVERIFIED {
+  color: #966000;
+  background: #fff8e1;
+}
+.status-REJECTED,
+.status-SUSPENDED {
+  color: #b91c1c;
+  background: #fff1f2;
+}
+.p-modal:has(.doctor-review) {
+  width: min(900px, calc(100vw - 32px));
+  max-width: 900px;
+}
+.doctor-review {
+  font-size: 13px;
+}
+.review-status {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--tint);
+}
+.doctor-review .p-form {
+  margin: 20px 0;
+}
+@media (max-width: 1000px) {
+  .auth-layout:has(.doctor-onboarding-panel) {
+    grid-template-columns: 1fr;
+  }
+  .auth-layout:has(.doctor-onboarding-panel) .auth-story {
+    display: none;
+  }
+  .doctor-onboarding-panel {
+    padding: 30px 24px;
+  }
+}
+@media (max-width: 580px) {
+  .registration-fields,
+  .registration-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .doctor-onboarding-panel {
+    padding: 26px 18px;
+  }
+  .registration-steps {
+    gap: 4px;
+  }
+  .registration-steps li {
+    font-size: 9px;
+  }
+  .registration-steps li span {
+    width: 24px;
+    height: 24px;
+  }
+  .verification-options {
+    gap: 10px;
+  }
+  .verification-options > label {
+    padding: 14px;
+  }
+  .registration-actions > .p-button {
+    flex: 1;
+  }
+  .registration-footer {
+    font-size: 11px;
+  }
+}

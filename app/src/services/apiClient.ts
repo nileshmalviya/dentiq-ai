@@ -9,7 +9,7 @@ const base = ((import.meta as ImportMeta & {
 }).env?.VITE_API_URL || '/api/v1').replace(/\/$/, '');
 export function setAccessToken(token: string | null) { accessToken = token; }
 async function transport(path: string, options: RequestInit = {}) {
-    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(new DOMException('Request timed out', 'TimeoutError')), 15000);
+    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(new DOMException('Request timed out', 'TimeoutError')), (path.startsWith('/doctor-registration')?45000:15000));
     const abort = () => controller.abort(options.signal?.reason);
     if (options.signal?.aborted)
         abort();
@@ -17,7 +17,7 @@ async function transport(path: string, options: RequestInit = {}) {
         options.signal?.addEventListener('abort', abort, { once: true });
     try {
         const response = await fetch(`${base}${path}`, { ...options, credentials: 'include', signal: controller.signal });
-        const body = await response.text();
+        const body = await response.arrayBuffer();
         return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
     }
     finally {
@@ -45,7 +45,7 @@ export async function restoreSession(): Promise<boolean> {
 export async function api<T>(path: string, options: RequestInit = {}, retry = true): Promise<ApiResponse<T>> {
     let res: Response;
     try {
-        res = await transport(path, { ...options, headers: { 'Content-Type': 'application/json', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}), ...options.headers } });
+        res = await transport(path, { ...options, headers: { ...(options.body instanceof FormData ? {} : {'Content-Type': 'application/json'}), ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}), ...options.headers } });
     }
     catch (error) {
         if (error instanceof DOMException && error.name === 'TimeoutError')
@@ -79,3 +79,5 @@ export async function api<T>(path: string, options: RequestInit = {}, retry = tr
     return body;
 }
 export const write = <T>(path: string, method: string, data?: unknown) => api<T>(path, { method, ...(data === undefined ? {} : { body: JSON.stringify(data) }) });
+
+export async function downloadFile(path:string,retry=true):Promise<Blob>{const res=await transport(path,{headers:accessToken?{Authorization:'Bearer '+accessToken}:{}});if(res.status===401&&retry&&await restoreSession())return downloadFile(path,false);if(!res.ok){const body=await res.json().catch(()=>null);throw new Error(body?.message||'Document download failed');}return res.blob();}

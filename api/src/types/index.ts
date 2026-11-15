@@ -1,5 +1,9 @@
 export type Role = 'SUPER_ADMIN' | 'DOCTOR' | 'PATIENT';
 export interface Actor {
+    registrationManaged?:boolean;
+    emailVerified?:boolean;
+    approvalStatus?:string;
+    doctorAccess?:boolean;
     id: string;
     role: Role;
     doctorId?: string;

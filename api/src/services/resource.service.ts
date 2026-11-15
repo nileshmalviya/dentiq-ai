@@ -59,7 +59,14 @@ export class ResourceService {
         }).map(([key]) => key);
         if (this.resource === 'clinical-notes')
             delete safeQuery.followUpDue;
+        if(this.resource==='doctors'){delete safeQuery.approvalStatus;delete safeQuery.emailVerificationStatus;}
         const spec = prepareQuery(safeQuery, fields, this.scope(actor), aliases, ['id', ...searchable]);
+        if(this.resource==='doctors'){
+          if(query.approvalStatus==='APPROVED')(spec.filter.$and as Criteria[]).push({$or:[{approvalStatus:'APPROVED'},{registrationManaged:{$ne:true},status:'Active'}]});
+          else if(query.approvalStatus){if(!['DRAFT','PENDING','REJECTED','SUSPENDED'].includes(String(query.approvalStatus)))throw new AppError(400,'Invalid approval filter');(spec.filter.$and as Criteria[]).push({approvalStatus:query.approvalStatus});}
+          if(query.emailVerificationStatus==='UNVERIFIED')(spec.filter.$and as Criteria[]).push({registrationManaged:true,emailVerificationStatus:'UNVERIFIED'});
+          else if(query.emailVerificationStatus==='VERIFIED')(spec.filter.$and as Criteria[]).push({emailVerificationStatus:'VERIFIED'});
+        }
         if (this.resource === 'clinical-notes' && query.followUpDue === 'true')
             (spec.filter.$and as Criteria[]).push({ followUpAt: { $lte: new Date() } });
         if (this.resource === 'inventory') {
@@ -136,6 +143,7 @@ export class ResourceService {
         if (actor.role === 'PATIENT')
             throw new AppError(403, 'Access denied');
         const data = { ...input };
+        if(this.resource==='doctors'&&['registrationManaged','approvalStatus','emailVerificationStatus','approvedBy','approvedAt','registrationId','verificationOption'].some(key=>key in input))throw new AppError(422,'Registration approval fields cannot be supplied to doctor provisioning');
         if (actor.role === 'DOCTOR') {
             data.doctorId = actor.doctorId;
             if (this.resource === 'inventory')
@@ -168,6 +176,8 @@ export class ResourceService {
     }
     async update(actor: Actor, id: string, input: Record<string, any>) {
         const existing = await this.get(actor, id);
+        if(this.resource==='doctors'&&(['registrationManaged','approvalStatus','emailVerificationStatus','approvedBy','approvedAt','rejectedBy','rejectedAt','rejectionReason','registrationId','verificationOption'].some(key=>key in input)||existing.registrationManaged))throw new AppError(422,'Use the doctor registration review workflow for managed applications');
+        if(this.resource==='users'&&actor.role==='DOCTOR'&&existing.accountStatus&&input.email&&input.email!==existing.email)throw new AppError(422,'Registration email changes require a new verification workflow');
         if (this.resource === 'appointments')
             throw new AppError(422, 'Use appointment status endpoint');
         const allowed = actor.role === 'PATIENT' ? ['name', 'email', 'phone', 'age', 'gender'] : this.resource === 'users' ? ['name', 'email', 'phone', 'clinic', 'preferences'] : null;
@@ -187,7 +197,8 @@ export class ResourceService {
         return this.sanitize(row);
     }
     async remove(actor: Actor, id: string) {
-        await this.get(actor, id);
+        const existing=await this.get(actor, id);
+        if(this.resource==='doctors'&&existing.registrationManaged)throw new AppError(422,'Use the doctor registration review workflow for managed applications');
         if (actor.role !== 'SUPER_ADMIN' && this.resource !== 'inventory')
             throw new AppError(403, 'Access denied');
         if (['doctors', 'patients', 'clinics', 'services'].includes(this.resource))

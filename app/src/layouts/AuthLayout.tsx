@@ -8,11 +8,12 @@ import "../styles/auth.css";
 
 export function AuthLayout() {
   const { pathname } = useLocation();
-  const registering = pathname === "/register";
+  const doctorRegistration=pathname.startsWith('/doctor/');
+  const registering = pathname === '/register'||doctorRegistration;
   useEffect(() => {
-    document.title = `${pathname === "/login" ? "Portal Login" : registering ? "Patient Registration" : "Forgot Password"} | DentIQ AI`;
+    document.title = `${pathname === "/login" ? "Portal Login" : doctorRegistration ? "Doctor Registration" : registering ? "Patient Registration" : "Forgot Password"} | DentIQ AI`;
     window.scrollTo(0, 0);
-  }, [pathname, registering]);
+  }, [pathname, registering,doctorRegistration]);
   return <div className="auth-shell">
     <header className="auth-header"><Brand /><div className="auth-header-actions"><Link to="/" className="back-home"><ArrowLeft size={15} /> Back to home</Link><ThemeToggle /></div></header>
     <main className={`auth-layout${registering ? " registration-layout" : ""}`}>
@@ -31,7 +32,7 @@ export function AuthLayout() {
         </div>
         <div className="story-bottom"><span className="story-bottom-icon"><Sparkles size={17} /></span><span>Thoughtfully built for the way you care.</span><ArrowUpRight size={17} /></div>
       </aside>
-      <section className="auth-form-panel" aria-label="Dentiq AI account" tabIndex={0}><Outlet /></section>
+      <section className={"auth-form-panel"+(doctorRegistration?" doctor-onboarding-panel":"")} aria-label="Dentiq AI account" tabIndex={0}><Outlet /></section>
     </main>
     <footer className="auth-footer"><span>© {new Date().getFullYear()} DentIQ AI. All rights reserved.</span><div><PolicyLink policy="privacy">Privacy Policy</PolicyLink><PolicyLink policy="terms">Terms & Conditions</PolicyLink></div></footer>
   </div>;

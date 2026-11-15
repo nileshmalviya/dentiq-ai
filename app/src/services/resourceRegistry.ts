@@ -1,3 +1,5 @@
+import {doctorRegistrationService} from './doctorRegistration.service';
+import {doctorApprovalService} from './doctorApproval.service';
 import { inventoryService } from './inventory.service';
 import { appointmentService } from './appointment.service';
 import { patientService } from './patient.service';
@@ -14,7 +16,7 @@ import { dashboardService } from './dashboard.service';
 import { analyticsService } from './analytics.service';
 import { reportService } from './report.service';
 import { dentalServiceService } from './dentalService.service';
-const services = [inventoryService, appointmentService, patientService, userService, recommendationService, aiChatService, doctorService, clinicService, clinicalNoteService, consultationService, treatmentPlanService, billingService, dashboardService, analyticsService, reportService, dentalServiceService];
+const services = [doctorRegistrationService,doctorApprovalService,inventoryService, appointmentService, patientService, userService, recommendationService, aiChatService, doctorService, clinicService, clinicalNoteService, consultationService, treatmentPlanService, billingService, dashboardService, analyticsService, reportService, dentalServiceService];
 function resolveService(endpoint: string) { const path = endpoint.split('?')[0]; const service = services.find(service => service.prefixes.some(prefix => path === prefix || path.startsWith(prefix + '/'))); if (!service)
     throw new Error('No frontend service registered for ' + path); return service; }
 export function readResource<T>(endpoint: string, query?: string) { return resolveService(endpoint).read<T>(endpoint, query); }

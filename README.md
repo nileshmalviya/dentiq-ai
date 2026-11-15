@@ -108,7 +108,7 @@ npm run preview
 
 Build outputs are `api/dist/` and `app/dist/`. API startup creates missing indexes without dropping existing collections or indexes. Existing data conflicts must be resolved deliberately. Atlas requires the execution machine's IP to be allowlisted and an appropriately scoped database user.
 
-The insert-only seed command is `npm --prefix api run seed`, or `npm run seed` from the root. Set all three `SEED_*_PASSWORD` settings in the private API environment first. Re-running the seed preserves existing records, passwords and edited login emails; it refuses `NODE_ENV=production`. Current local login emails are `adminuser@gmail.com`, `docteruser@gmail.com`, and `patientuser@gmail.com`; their current passwords are in the corresponding local seed-password settings. An empty database initially uses the original fixture emails. Public registration creates patients, and only a super admin can provision a doctor through the API.
+The insert-only seed command is `npm --prefix api run seed`, or `npm run seed` from the root. Set all three `SEED_*_PASSWORD` settings in the private API environment first. Re-running the seed preserves existing records, passwords and edited login emails; it refuses `NODE_ENV=production`. Current local login emails are `adminuser@gmail.com`, `docteruser@gmail.com`, and `patientuser@gmail.com`; their current passwords are in the corresponding local seed-password settings. An empty database initially uses the original fixture emails. Patient signup remains at /register. Doctor signup is at /doctor/register with OTP and Super Admin approval. Direct administrator provisioning remains supported.
 
 The seed snapshot is stored entirely inside `api/scripts/seed-data.json`, so ordinary seeding works independently of the frontend. The optional snapshot-generation tool, `npm --prefix api run seed:snapshot`, reads the retained fixture definitions from `app/src/data` when intentionally refreshing that snapshot. It does not connect to MongoDB or change records.
 
@@ -134,3 +134,7 @@ The assistant provides rule-based guidance, not a diagnosis, and uses no paid AI
 Backend execution now follows Route -> Controller -> Service -> Repository -> MongoDB. Backend code is organized in controllers/, services/, repositories/, models/, routes/, interfaces/, validations/, middleware/, container/, config/, types/, utils/ and errors/ under api/src/. Frontend requests now pass through app/src/services/apiClient.ts and dedicated feature service files. UI hooks are in app/src/hooks/.
 
 See [backend architecture](api/docs/architecture.md) and [frontend API services](app/docs/api-services.md) for file responsibilities, endpoint coverage and the verification actually performed. Existing endpoints, models/indexes, routes, UI and business rules are retained. No dependencies were added.
+
+## Doctor registration
+
+The new /doctor/register flow includes email OTP verification, private certificates, verification request selection and an approval status screen. Every screen provides Back to home. Review applications in the existing /super-admin/doctors page. Configure SMTP settings in api/.env; the sender never belongs in frontend configuration. See [registration architecture and setup](api/docs/doctor-registration.md).

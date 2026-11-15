@@ -8,7 +8,8 @@ export function AuthProvider({children}:{children:ReactNode}) {
  const [user,setUser]=useState<DemoUser|null>(null),[loading,setLoading]=useState(true);
  useEffect(()=>{let active=true;void authService.restoreSession().then(async restored=>{if(restored){const result=await authService.getCurrentUser();if(active)setUser(mapUser(result.data));}}).catch(()=>{}).finally(()=>{if(active)setLoading(false);});return()=>{active=false;};},[]);
  async function login(email:string,password:string,remember:boolean){const result=await authService.login(email,password,remember);const account=mapUser(result.data.user);setUser(account);return account;}
+ async function reloadUser(){const result=await authService.getCurrentUser();const account=mapUser(result.data);setUser(account);return account;}
  function logout(){void authService.logout().finally(()=>{setUser(null);window.dispatchEvent(new Event('dentiq:data'));});}
  if(loading)return <div role="status" className="local-notice">Restoring your session�</div>;
- return <AuthContext.Provider value={{user,login,logout}}>{children}</AuthContext.Provider>;
+ return <AuthContext.Provider value={{user,login,logout,reloadUser}}>{children}</AuthContext.Provider>;
 }

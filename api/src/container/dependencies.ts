@@ -1,3 +1,17 @@
+import {EmailService} from '../services/email.service.js';
+import {EmailVerificationService} from '../services/emailVerification.service.js';
+import {DoctorRegistrationService} from '../services/doctorRegistration.service.js';
+import {DoctorApprovalService} from '../services/doctorApproval.service.js';
+import {DocumentService} from '../services/document.service.js';
+import {FileStorageService} from '../services/fileStorage.service.js';
+import {EmailVerificationRepository} from '../repositories/emailVerification.repository.js';
+import {DoctorRegistrationRepository} from '../repositories/doctorRegistration.repository.js';
+import {DoctorApprovalRepository} from '../repositories/doctorApproval.repository.js';
+import {DoctorRegistrationController} from '../controllers/doctorRegistration.controller.js';
+import {EmailVerificationController} from '../controllers/emailVerification.controller.js';
+import {DoctorApprovalController} from '../controllers/doctorApproval.controller.js';
+import {DocumentController} from '../controllers/document.controller.js';
+import type {RegistrationEmailSender,PrivateDocumentStorage} from '../interfaces/registration/contracts.js';
 import { RecommendationService } from '../services/recommendation.service.js';
 import { RecommendationController } from '../controllers/recommendation.controller.js';
 import type { Env } from '../config/env.js';
@@ -19,7 +33,12 @@ import { PatientController } from '../controllers/patient.controller.js';
 import { PublicController } from '../controllers/public.controller.js';
 import { DashboardController } from '../controllers/dashboard.controller.js';
 import { ChatController } from '../controllers/aiChat.controller.js';
-export function createDependencies(env: Env) {
+export function createDependencies(env: Env, overrides:{email?:RegistrationEmailSender;storage?:PrivateDocumentStorage}={}) {
+    const email=overrides.email||new EmailService(env),storage=overrides.storage||new FileStorageService(),registrationStore=new DoctorRegistrationRepository();
+    const emailVerification=new EmailVerificationService(repositories,new EmailVerificationRepository(),email,env.JWT_ACCESS_SECRET);
+    const registration=new DoctorRegistrationService(repositories,registrationStore,emailVerification,email);
+    const approval=new DoctorApprovalService(repositories,new DoctorApprovalRepository(),registration,storage);
+    const documents=new DocumentService(repositories,registrationStore,registration,storage);
     const recommendations = new RecommendationService(repositories);
     const auth = new AuthService(repositories, work, env);
     const appointments = new AppointmentService('appointments', repositories, work), inventory = new InventoryService('inventory', repositories, work), patients = new PatientService('patients', repositories, work);
@@ -28,6 +47,6 @@ export function createDependencies(env: Env) {
         service = new ResourceService(name, repositories, work);
         resources.set(name, service);
     } return new ResourceController(service); };
-    return { env, auth, controllers: { auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
+    return { env, auth, services:{registration,emailVerification,approval,documents}, controllers: { registration:new DoctorRegistrationController(registration),emailVerification:new EmailVerificationController(emailVerification),approval:new DoctorApprovalController(approval),documents:new DocumentController(documents), auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
 }
 export type Dependencies = ReturnType<typeof createDependencies>;

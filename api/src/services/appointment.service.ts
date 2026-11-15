@@ -7,7 +7,7 @@ import { definitions, publicDoctor } from '../validations/resource.validation.js
 export const transitions: Record<string, string[]> = { Scheduled: ['Confirmed', 'Checked In', 'Cancelled'], Confirmed: ['Checked In', 'Cancelled'], 'Checked In': ['In Progress', 'Cancelled'], 'In Progress': ['Completed'], Completed: [], Cancelled: [] };
 export class AppointmentService extends ResourceService {
     async availability(doctorId: string, date: string) {
-        const doctor = await this.repos.doctors.findOne({ id: doctorId, status: 'Active' });
+        const doctor = await this.repos.doctors.findOne({ id: doctorId, status: 'Active', clinicalServicesEnabled:{$ne:false}, $or:[{registrationManaged:{$ne:true}},{approvalStatus:'APPROVED',emailVerificationStatus:'VERIFIED'}] });
         if (!doctor)
             throw new AppError(404, 'Doctor not found');
         const clinic = await this.repos.clinics.findOne({ id: doctor.clinicId, status: 'Active' });
@@ -22,7 +22,7 @@ export class AppointmentService extends ResourceService {
         }[]).find(a => a.day === day.weekday)?.times || [];
         const times = configured.map(time => DateTime.fromISO(`${date}T${time}`, { zone: clinic.timezone })).filter(t => t.isValid && t > DateTime.now());
         const occupied = await this.repos.appointments.findMany({ filter: { doctorId, startTime: { $in: times.map(t => t.toUTC().toISO()) }, status: { $ne: 'Cancelled' } }, sort: { startTime: 1 }, skip: 0, limit: 100 });
-        return { doctor: publicDoctor(doctor), date, timezone: clinic.timezone, slots: times.filter(t => !occupied.some(a => a.startTime === t.toUTC().toISO())).map(t => ({ startTime: t.toUTC().toISO(), endTime: t.plus({ minutes: 30 }).toUTC().toISO(), label: t.toFormat('h:mm a') })) };
+        return { doctor: publicDoctor(doctor), date, timezone: clinic.timezone, slots: times.filter(t => !occupied.some(a => a.startTime === t.toUTC().toISO())).map(t => ({ startTime: t.toUTC().toISO(), endTime: t.plus({ minutes: doctor.slotDuration || 30 }).toUTC().toISO(), label: t.toFormat('h:mm a') })) };
     }
     async book(actor: Actor | undefined, input: Record<string, any>) {
         const { doctorId, date, startTime, reason } = input;

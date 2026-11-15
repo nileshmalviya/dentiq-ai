@@ -10,7 +10,7 @@ const digest = (value: string) => createHash('sha256').update(value).digest('hex
 export function safeUser(user: Row) { const { passwordHash, ...safe } = user; return safe; }
 export class AuthService {
     constructor(private repos: Repositories, private work: UnitOfWork, private env: Env) { }
-    async forgotPassword(_email: string): Promise<never> { throw new AppError(503, 'Password recovery requires an email provider. Contact your clinic administrator.'); }
+    async forgotPassword(_email: string): Promise<never> { throw new AppError(503, 'Password recovery is not enabled. Contact your clinic administrator.'); }
     async register(data: {
         name: string;
         email: string;
@@ -25,7 +25,8 @@ export class AuthService {
             throw new AppError(401, 'Incorrect email or password');
         return this.issue(user, remember);
     }
-    private async issue(user: Row, remember: boolean) { const sessionId = randomUUID(); const refreshToken = jwt.sign({ sid: sessionId }, this.env.JWT_REFRESH_SECRET, { subject: user.id, expiresIn: remember ? '30d' : '1d', issuer: 'dentiq', audience: 'dentiq-refresh', algorithm: 'HS256' }); await this.repos.sessions.create({ id: sessionId, userId: user.id, tokenHash: digest(refreshToken), expiresAt: new Date(Date.now() + (remember ? 30 : 1) * 86400000), remember }); return { user: safeUser(user), accessToken: jwt.sign({}, this.env.JWT_ACCESS_SECRET, { subject: user.id, expiresIn: '15m', issuer: 'dentiq', audience: 'dentiq-api', algorithm: 'HS256' }), refreshToken, remember }; }
+    private async account(user:Row){if(user.role!=='DOCTOR')return safeUser(user);const doctor=await this.repos.doctors.findOne({id:user.doctorId});if(!doctor?.registrationManaged)return safeUser(user);const doctorAccess=doctor.status==='Active'&&doctor.approvalStatus==='APPROVED'&&user.emailVerified===true&&user.accountStatus==='ACTIVE';return {...safeUser(user),registrationManaged:true,emailVerified:user.emailVerified===true,approvalStatus:doctor.approvalStatus,doctorAccess};}
+    private async issue(user: Row, remember: boolean) { const sessionId = randomUUID(); const refreshToken = jwt.sign({ sid: sessionId }, this.env.JWT_REFRESH_SECRET, { subject: user.id, expiresIn: remember ? '30d' : '1d', issuer: 'dentiq', audience: 'dentiq-refresh', algorithm: 'HS256' }); await this.repos.sessions.create({ id: sessionId, userId: user.id, tokenHash: digest(refreshToken), expiresAt: new Date(Date.now() + (remember ? 30 : 1) * 86400000), remember }); return { user: await this.account(user), accessToken: jwt.sign({}, this.env.JWT_ACCESS_SECRET, { subject: user.id, expiresIn: '15m', issuer: 'dentiq', audience: 'dentiq-api', algorithm: 'HS256' }), refreshToken, remember }; }
     async refresh(token: string) {
         let payload: jwt.JwtPayload;
         try {
@@ -53,15 +54,15 @@ export class AuthService {
         const user = await this.repos.users.findOne({ id: payload.sub, status: 'Active' });
         if (!user)
             throw new AppError(401, 'Account unavailable');
-        if (user.role === 'DOCTOR' && !await this.repos.doctors.findOne({ id: user.doctorId, status: 'Active' }))
-            throw new AppError(403, 'Doctor account inactive');
-        return { id: user.id, role: user.role, doctorId: user.doctorId, patientId: user.patientId, clinicId: user.clinicId };
+        let managed=false,doctorAccess=true,approvalStatus:string|undefined;
+        if(user.role==='DOCTOR'){const doctor=await this.repos.doctors.findOne({id:user.doctorId});if(!doctor||doctor.status==='Inactive')throw new AppError(403,'Doctor account inactive');managed=doctor.registrationManaged===true;approvalStatus=doctor.approvalStatus;doctorAccess=managed?doctor.status==='Active'&&doctor.approvalStatus==='APPROVED'&&user.emailVerified===true&&user.accountStatus==='ACTIVE':doctor.status==='Active';if(!managed&&!doctorAccess)throw new AppError(403,'Doctor account inactive');}
+        return {id:user.id,role:user.role,doctorId:user.doctorId,patientId:user.patientId,clinicId:user.clinicId,registrationManaged:managed,emailVerified:user.emailVerified,approvalStatus,doctorAccess};
     }
     async me(actor: Actor) {
         const user = await this.repos.users.findOne({ id: actor.id });
         if (!user)
             throw new AppError(401, 'Authentication required');
-        return safeUser(user);
+        return this.account(user);
     }
     async logout(token: string | undefined) {
         if (token)

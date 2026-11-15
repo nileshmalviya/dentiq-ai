@@ -1,4 +1,9 @@
-﻿import { Navigate } from "react-router-dom";
+import DoctorRegister from '../pages/doctor/Register';
+import VerifyEmail from '../pages/doctor/VerifyEmail';
+import VerificationRequest from '../pages/doctor/VerificationRequest';
+import RegistrationStatus from '../pages/doctor/RegistrationStatus';
+import {DoctorOnboardingRoute} from '../auth/ProtectedRoute';
+import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DoctorLayout } from "../layouts/DoctorLayout";
@@ -64,7 +69,7 @@ export const appRoutes: RouteObject[] = [
     { path: "ai-engine", element: <AIEngine /> }, { path: "services", element: <Services /> },
     { path: "analytics", element: <Analytics /> }, { path: "reports", element: <SuperAdminReports /> }, { path: "settings", element: <SuperAdminSettings /> }, { path: "*", element: <NotFound /> },
   ] }] },
-  { element: <AuthLayout />, children: [{ path: "/login", element: <Login /> }, { path: "/register", element: <RegisterPage /> }, { path: "/forgot-password", element: <ForgotPasswordPage /> }] },
+  { element: <AuthLayout />, children: [{path:'/doctor/register',element:<DoctorRegister/>},{element:<DoctorOnboardingRoute/>,children:[{path:'/doctor/verify-email',element:<VerifyEmail/>},{path:'/doctor/verification-request',element:<VerificationRequest/>},{path:'/doctor/registration-status',element:<RegistrationStatus/>}]},{ path: "/login", element: <Login /> }, { path: "/register", element: <RegisterPage /> }, { path: "/forgot-password", element: <ForgotPasswordPage /> }] },
   { path: "/unauthorized", element: <Unauthorized /> },
   { path: "/admin/*", element: <AdminLegacyRedirect /> },
   { path: "/find-a-dentist", element: <Navigate to="/patient/recommendations" replace /> },
