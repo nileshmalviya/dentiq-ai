@@ -18,6 +18,9 @@ import type { Env } from '../config/env.js';
 import { repositories, work } from './repositories.js';
 import { ResourceService } from '../services/resource.service.js';
 import { AuthService } from '../services/auth.service.js';
+import { SocialAuthRepository } from '../repositories/socialAuth.repository.js';
+import { SocialAuthService } from '../services/socialAuth.service.js';
+import { SocialAuthController } from '../controllers/socialAuth.controller.js';
 import { AppointmentService } from '../services/appointment.service.js';
 import { InventoryService } from '../services/inventory.service.js';
 import { PatientService } from '../services/patient.service.js';
@@ -41,12 +44,14 @@ export function createDependencies(env: Env, overrides:{email?:RegistrationEmail
     const documents=new DocumentService(repositories,registrationStore,registration,storage);
     const recommendations = new RecommendationService(repositories);
     const auth = new AuthService(repositories, work, env);
+    const socialAuth = new SocialAuthController(new SocialAuthService(env, new SocialAuthRepository(), auth), env);
     const appointments = new AppointmentService('appointments', repositories, work), inventory = new InventoryService('inventory', repositories, work), patients = new PatientService('patients', repositories, work);
     const resources = new Map<Resource, ResourceService>([['appointments', appointments], ['inventory', inventory], ['patients', patients]]);
     const resource = (name: Resource) => { let service = resources.get(name); if (!service) {
         service = new ResourceService(name, repositories, work);
         resources.set(name, service);
     } return new ResourceController(service); };
-    return { env, auth, services:{registration,emailVerification,approval,documents}, controllers: { registration:new DoctorRegistrationController(registration),emailVerification:new EmailVerificationController(emailVerification),approval:new DoctorApprovalController(approval),documents:new DocumentController(documents), auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
+    return { env, auth, services:{registration,emailVerification,approval,documents}, controllers: { socialAuth, registration:new DoctorRegistrationController(registration),emailVerification:new EmailVerificationController(emailVerification),approval:new DoctorApprovalController(approval),documents:new DocumentController(documents), auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
 }
 export type Dependencies = ReturnType<typeof createDependencies>;
+

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { authService } from "../../services/auth.service";
+import { socialAuthService } from "../../services/socialAuth.service";
+import { useAuth } from "../../auth/useAuth";
 import { FormNotice } from "./AuthFields";
 
 function ProviderIcon({ provider }: { provider: "google" | "linkedin" | "facebook" }) {
@@ -8,10 +9,17 @@ function ProviderIcon({ provider }: { provider: "google" | "linkedin" | "faceboo
 }
 
 export function SocialLogin() {
+  const { user } = useAuth();
   const [error, setError] = useState("");
-  function start(provider: "google" | "linkedin" | "facebook") {
+  const [pending, setPending] = useState(false);
+  async function start(provider: "google" | "linkedin" | "facebook") {
+    if (pending) return;
     setError("");
-    try { authService.socialLogin(provider); } catch (error) { setError(error instanceof Error ? error.message : "Unable to start social sign-in."); }
+    setPending(true);
+    try { await socialAuthService.start(provider); } catch (error) { setError(error instanceof Error ? error.message : "Unable to start social sign-in."); }
+    finally { setPending(false); }
   }
-  return <><div className="auth-divider"><span>or continue with</span></div><div className="social-buttons">{(["google", "linkedin", "facebook"] as const).map(provider => <button type="button" key={provider} className="social-button" onClick={() => start(provider)}><ProviderIcon provider={provider} /><span>Continue with {provider === "linkedin" ? "LinkedIn" : provider[0].toUpperCase() + provider.slice(1)}</span></button>)}</div><FormNotice message={error} /></>;
+  if (user && user.role !== "patient") return null;
+  return <><div className="auth-divider"><span>Patient social login</span></div><div className="social-buttons">{(["google", "linkedin", "facebook"] as const).map(provider => <button type="button" key={provider} className="social-button" disabled={pending} onClick={() => start(provider)}><ProviderIcon provider={provider} /><span>Continue with {provider === "linkedin" ? "LinkedIn" : provider[0].toUpperCase() + provider.slice(1)}</span></button>)}</div><FormNotice message={error} /></>;
 }
+

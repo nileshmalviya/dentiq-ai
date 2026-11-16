@@ -27,6 +27,10 @@ export class AuthService {
     }
     private async account(user:Row){if(user.role!=='DOCTOR')return safeUser(user);const doctor=await this.repos.doctors.findOne({id:user.doctorId});if(!doctor?.registrationManaged)return safeUser(user);const doctorAccess=doctor.status==='Active'&&doctor.approvalStatus==='APPROVED'&&user.emailVerified===true&&user.accountStatus==='ACTIVE';return {...safeUser(user),registrationManaged:true,emailVerified:user.emailVerified===true,approvalStatus:doctor.approvalStatus,doctorAccess};}
     private async issue(user: Row, remember: boolean) { const sessionId = randomUUID(); const refreshToken = jwt.sign({ sid: sessionId }, this.env.JWT_REFRESH_SECRET, { subject: user.id, expiresIn: remember ? '30d' : '1d', issuer: 'dentiq', audience: 'dentiq-refresh', algorithm: 'HS256' }); await this.repos.sessions.create({ id: sessionId, userId: user.id, tokenHash: digest(refreshToken), expiresAt: new Date(Date.now() + (remember ? 30 : 1) * 86400000), remember }); return { user: await this.account(user), accessToken: jwt.sign({}, this.env.JWT_ACCESS_SECRET, { subject: user.id, expiresIn: '15m', issuer: 'dentiq', audience: 'dentiq-api', algorithm: 'HS256' }), refreshToken, remember }; }
+    async socialPatientSession(user: Row) {
+        if (user.role !== 'PATIENT' || user.status !== 'Active') throw new AppError(403, 'Social login is available for active patient accounts only.');
+        return this.issue(user, false);
+    }
     async refresh(token: string) {
         let payload: jwt.JwtPayload;
         try {

@@ -8,6 +8,6 @@ export const authService = {
     logout: () => write('/auth/logout', 'POST').finally(() => setAccessToken(null)),
     getCurrentUser: () => api<Record<string, unknown>>('/auth/me'), restoreSession,
     forgotPassword: (...values: unknown[]) => write('/auth/forgot-password', 'POST', { email: String(values[0]) }),
-    socialLogin: (...values: unknown[]) => { void values; throw new Error('Social sign-in requires a configured identity provider.'); }
 };
 export function policyUrl(policy: 'terms' | 'privacy'): string | undefined { void policy; return undefined; }
+

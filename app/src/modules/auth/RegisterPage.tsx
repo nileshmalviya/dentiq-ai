@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, LoaderCircle, Stethoscope, UserRound } from "lucide-react";
 import { Field, FormNotice, PasswordStrength, PolicyLink } from "./AuthFields";
+import { SocialLogin } from "./SocialLogin";
 import { authService } from "../../services/auth.service";
 import { focusFirstError } from "./validation";
 import type { Errors } from "./validation";
@@ -51,7 +52,8 @@ export function RegisterPage() {
         <FormNotice message={message} />
         <button type="submit" className="auth-primary">{pending ? <><LoaderCircle size={18} className="loading-icon" /> Creating your account…</> : <>Create Patient Account <ArrowRight size={18} /></>}</button>
       </fieldset>
-    </form>
+    </form><SocialLogin />
     <p className="auth-switch">Already have an account? <Link to="/login" className="text-link">Login <ArrowRight size={14} /></Link></p>
   </div>;
 }
+

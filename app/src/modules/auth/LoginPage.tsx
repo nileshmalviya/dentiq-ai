@@ -16,7 +16,7 @@ export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Errors>({});
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(() => new URLSearchParams(window.location.search).get("social_error")?.slice(0, 300) || "");
   const [pending, setPending] = useState(false);
   const [remember, setRemember] = useState(() => { try { return localStorage.getItem("dentiq-remember") === "true"; } catch { return false; } });
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -39,3 +39,4 @@ export function LoginPage() {
     </fieldset></form><SocialLogin /><p className="auth-switch">Doctor? <Link className="text-link" to="/doctor/register">Register your practice</Link><br />New patient? <Link className="text-link" to="/register">Registration form</Link><br /><Link className="text-link" to="/">Continue as a patient without login</Link></p><div className="form-footnote"><LockKeyhole size={13} /> Secure access to your clinic portal.</div>
   </div>;
 }
+

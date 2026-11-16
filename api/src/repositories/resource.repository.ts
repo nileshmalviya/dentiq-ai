@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { SocialAuthRepository } from './socialAuth.repository.js';
 import type { UnitOfWork } from '../interfaces/repositories/repository.js';
 import type { Criteria, Row } from '../types/index.js';
 import { models } from '../models/resource.model.js';
@@ -29,5 +30,5 @@ export class MongoUnitOfWork implements UnitOfWork {
     transition: UnitOfWork['transition'] = (...args) => this.appointments.transition(...args);
     adjustStock: UnitOfWork['adjustStock'] = (...args) => this.stock.adjustStock(...args);
 }
-export async function ensureIndexes() { for (const model of Object.values(models))
+export async function ensureIndexes() { await new SocialAuthRepository().ensureIndexes(); for (const model of Object.values(models))
     await model.createIndexes(); }
