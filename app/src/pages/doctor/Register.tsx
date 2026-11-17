@@ -1,3 +1,4 @@
+import { ClinicLocationFields, clinicLocationValue, emptyClinicLocation } from '../../components/doctor/ClinicLocationFields';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -42,6 +43,7 @@ export default function DoctorRegister() {
   );
 }
 function RegistrationForm({ catalog }: { catalog: RegistrationCatalog }) {
+  const [clinicLocation, setClinicLocation] = useState(emptyClinicLocation);
   const [step, setStep] = useState(0),
     [data, setData] = useState<DoctorApplication>(() =>
       sampleApplication(catalog),
@@ -63,6 +65,7 @@ function RegistrationForm({ catalog }: { catalog: RegistrationCatalog }) {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (actions.busy) return;
+    if (step === 2 || step === 4) { try { clinicLocationValue(clinicLocation); } catch (error) { actions.setError(error instanceof Error ? error.message : "Confirm the clinic location."); return; } }
     if (step < 4) {
       if (step === 0 && !files.PROFILE_PHOTO?.length) {
         actions.setError('Choose your professional profile photo.');
@@ -102,6 +105,7 @@ function RegistrationForm({ catalog }: { catalog: RegistrationCatalog }) {
     await actions.run(async () => {
       const created = await actions.register({
         ...normalizeApplication(data),
+        ...(clinicLocationValue(clinicLocation) ? { clinicLocation: clinicLocationValue(clinicLocation) } : {}),
         password,
         confirmPassword,
       });
@@ -183,13 +187,14 @@ function RegistrationForm({ catalog }: { catalog: RegistrationCatalog }) {
                 data[(['personal', 'professional', 'clinic'] as const)[step]]
               }
               catalog={catalog}
-              onChange={(values) =>
+              onChange={(values) => {
+                if (step === 2 && ["address", "city", "state", "postalCode", "country"].some(key => values[key] !== data.clinic[key])) setClinicLocation(previous => ({ ...previous, confirmed: false }));
                 setData((prev) => ({
                   ...prev,
                   [(['personal', 'professional', 'clinic'] as const)[step]]:
                     values,
-                }))
-              }
+                }));
+              }}
             />
           )}
           {step === 0 && (
@@ -200,6 +205,7 @@ function RegistrationForm({ catalog }: { catalog: RegistrationCatalog }) {
               onChange={selectFiles}
             />
           )}
+          {step === 2 && <ClinicLocationFields value={clinicLocation} onChange={setClinicLocation} />}
           {step === 2 && (
             <DocumentInputs
               types={['CLINIC_LOGO']}

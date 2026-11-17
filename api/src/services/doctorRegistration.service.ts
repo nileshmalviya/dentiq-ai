@@ -1,3 +1,4 @@
+import { confirmedClinicPoint } from './clinic-location.service.js';
 import { verificationOptions } from '../constants/doctorRegistration.js';
 import bcrypt from 'bcryptjs';
 import { randomUUID } from 'node:crypto';
@@ -27,7 +28,7 @@ export class DoctorRegistrationService {
     if (Buffer.byteLength(String(input.password), 'utf8') > 72)
       throw new AppError(422, 'Password must use at most 72 UTF-8 bytes');
     this.email.assertConfigured();
-    const { password, confirmPassword, ...payload } = input;
+    const { password, confirmPassword, clinicLocation, ...payload } = input;
     void confirmPassword;
     const data = validateDoctorApplication(payload),
       records = doctorApplicationRecords(data);
@@ -78,6 +79,7 @@ export class DoctorRegistrationService {
           id: clinicId,
           ...definitions.clinics.parse({
             ...records.clinic,
+            ...(clinicLocation ? { location: confirmedClinicPoint(clinicLocation) } : {}),
             status: 'Under Review',
           }),
         },
@@ -225,7 +227,7 @@ export class DoctorRegistrationService {
         {
           collection: 'clinics',
           filter: { id: application.clinicId },
-          update: { $set: records.clinic },
+          update: { $set: { ...records.clinic, ...(input.clinicLocation ? { location: confirmedClinicPoint(input.clinicLocation) } : {}) } },
         },
       ],
       [

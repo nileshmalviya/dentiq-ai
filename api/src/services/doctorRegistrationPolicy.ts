@@ -162,6 +162,8 @@ export function doctorApplicationRecords(data: Record<string, any>) {
       name: c.name,
       city: c.city,
       address: c.address,
+      state: c.state,
+      postalCode: c.postalCode,
       timezone: 'Asia/Kolkata',
     },
   };

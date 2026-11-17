@@ -1,3 +1,7 @@
+import { ClinicSearchRepository } from '../repositories/clinic-search.repository.js';
+import { DoctorSearchService } from '../services/doctor-search.service.js';
+import { ClinicLocationService } from '../services/clinic-location.service.js';
+import { DoctorSearchController, ClinicLocationController } from '../controllers/location.controller.js';
 import {EmailService} from '../services/email.service.js';
 import {EmailVerificationService} from '../services/emailVerification.service.js';
 import {DoctorRegistrationService} from '../services/doctorRegistration.service.js';
@@ -51,7 +55,7 @@ export function createDependencies(env: Env, overrides:{email?:RegistrationEmail
         service = new ResourceService(name, repositories, work);
         resources.set(name, service);
     } return new ResourceController(service); };
-    return { env, auth, services:{registration,emailVerification,approval,documents}, controllers: { socialAuth, registration:new DoctorRegistrationController(registration),emailVerification:new EmailVerificationController(emailVerification),approval:new DoctorApprovalController(approval),documents:new DocumentController(documents), auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
+    return { env, auth, services:{registration,emailVerification,approval,documents}, controllers: { doctorSearch: new DoctorSearchController(new DoctorSearchService(new ClinicSearchRepository(repositories.clinics), repositories, env.NEARBY_MAX_RADIUS_KM)), clinicLocations: new ClinicLocationController(new ClinicLocationService(repositories)), socialAuth, registration:new DoctorRegistrationController(registration),emailVerification:new EmailVerificationController(emailVerification),approval:new DoctorApprovalController(approval),documents:new DocumentController(documents), auth: new AuthController(auth, env), user: resource('users'), resource, appointments: new AppointmentController(appointments), inventory: new InventoryController(inventory), patients: new PatientController(patients), public: new PublicController(new PublicService(repositories)), dashboard: new DashboardController(new DashboardService(repositories)), chat: new ChatController(new ChatService(repositories, recommendations), env), recommendations: new RecommendationController(recommendations, env) } };
 }
 export type Dependencies = ReturnType<typeof createDependencies>;
 

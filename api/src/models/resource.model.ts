@@ -1,3 +1,4 @@
+import { geoPointSchema } from '../validations/location.validation.js';
 import mongoose, { Schema } from 'mongoose';
 import { z } from 'zod';
 import { definitions, type Resource } from '../validations/resource.validation.js';
@@ -34,8 +35,13 @@ export const models = Object.fromEntries(Object.entries(definitions).map(([name,
     for (const [key, ref] of Object.entries(references))
         if (shape[key])
             schema.virtual(key.replace('Id', 'Record'), { ref, localField: key, foreignField: 'id', justOne: true });
+    if (name === 'clinics') {
+        schema.path('location').validate((value: any) => value == null || geoPointSchema.safeParse(value.toObject ? value.toObject() : value).success, 'Invalid clinic coordinates');
+        schema.index({ location: '2dsphere' });
+    }
     if (name === 'users')
         schema.index({ email: 1 }, { unique: true });
+    if (name === 'doctors') schema.index({ status: 1, approvalStatus: 1 });
     if (name === 'doctors')
         schema.index({ email: 1 }, { unique: true });
     if (name === 'appointments') {
@@ -52,7 +58,7 @@ export const models = Object.fromEntries(Object.entries(definitions).map(([name,
     if(name==='doctors')schema.index({registrationCouncil:1,registrationState:1,registrationNumber:1},{unique:true,partialFilterExpression:{registrationManaged:true}});
     if(name==='doctor-registrations'){schema.index({userId:1},{unique:true});schema.index({doctorId:1},{unique:true});schema.index({requestStatus:1,createdAt:-1});}
     if(name==='email-verifications'){schema.index({userId:1},{unique:true});schema.index({expiresAt:1},{expireAfterSeconds:0});}
-    if(name==='doctor-clinics')schema.index({doctorId:1,clinicId:1},{unique:true});
+    if(name==='doctor-clinics'){schema.index({doctorId:1,clinicId:1},{unique:true});schema.index({clinicId:1,status:1});}
     if(name==='documents')schema.index({registrationId:1,active:1});
     if(name==='doctor-approval-audits')schema.index({registrationId:1,createdAt:1});
     if (name === 'messages')

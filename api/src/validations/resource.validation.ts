@@ -1,3 +1,4 @@
+import { geoPointSchema } from './location.validation.js';
 import {personalSchema,professionalSchema,clinicSchema} from './doctorRegistration.validation.js';
 import { z } from 'zod';
 const text = z.string().trim().min(1).max(200), optional = z.string().trim().max(4000).default('');
@@ -6,7 +7,7 @@ export const definitions = {
     users: z.object({ name: text, email: z.string().email().toLowerCase(), passwordHash: text, emailVerified:z.boolean().optional(),accountStatus:z.enum(['ACTIVE','PENDING','REJECTED','SUSPENDED']).optional(), role: z.enum(['SUPER_ADMIN', 'DOCTOR', 'PATIENT']), status: z.enum(['Active', 'Inactive']).default('Active'), doctorId: reference.optional(), patientId: reference.optional(), clinicId: reference.optional(), phone: optional, clinic: optional, savedDoctorIds: z.array(reference).max(100).default([]), preferences: z.object({ appointments: z.boolean(), followups: z.boolean(), reports: z.boolean() }).default({ appointments: true, followups: true, reports: false }) }),
     doctors: z.object({ registrationId:reference.optional(),city:optional,registrationDate:optional,verificationOption:optional,registrationManaged:z.boolean().optional(),emailVerificationStatus:z.enum(['UNVERIFIED','VERIFIED']).optional(),approvalStatus:z.enum(['DRAFT','PENDING','APPROVED','REJECTED','SUSPENDED']).optional(),registrationNumber:optional,registrationCouncil:optional,registrationState:optional,doctorCategory:optional,subSpecialization:optional,qualifications:z.array(text).default([]),clinicIds:z.array(reference).default([]),approvedBy:reference.optional(),approvedAt:z.coerce.date().optional(),rejectedBy:reference.optional(),rejectedAt:z.coerce.date().optional(),rejectionReason:optional,clinicalServicesEnabled:z.boolean().optional(),slotDuration:z.number().int().min(30).max(60).optional(), userId: reference.optional(), name: text, email: z.string().email().toLowerCase(), phone: optional, specialty: text, qualification: text, experience: num.max(80), fee: num, rating: num.max(5).default(0), reviews: num.default(0), clinicId: reference, clinic: text, photo: optional, languages: optional, about: optional, treatments: z.array(text).max(50).default([]), distance: optional, nextAvailable: optional, status: z.enum(['Active', 'Inactive', 'Under Review']).default('Active'), availability: z.array(z.object({ day: z.number().int().min(1).max(7), times: z.array(z.string().regex(/^([01]\d|2[0-3]):(?:00|30)$/)).max(48) })).max(7).default([]), doctorReviews: z.array(z.object({ name: text, rating: num.max(5), date: text, text: optional })).default([]) }),
     patients: z.object({ userId: reference.optional(), name: text, email: z.string().email().toLowerCase(), phone: optional, age: num.max(130).optional(), gender: optional, medicalHistory: optional, doctorIds: z.array(reference).default([]), lastVisit: optional, treatment: optional, status: text.default('Active') }),
-    clinics: z.object({ name: text, city: text, address: optional, timezone: z.string().refine(value => {
+    clinics: z.object({ name: text, city: text, address: optional, state: optional, postalCode: optional, location: geoPointSchema.optional(), timezone: z.string().refine(value => {
             try {
                 new Intl.DateTimeFormat('en', { timeZone: value });
                 return true;
@@ -37,5 +38,5 @@ export const definitions = {
 };
 export type Resource = keyof typeof definitions;
 export const publicDoctorFields = ['id', 'name', 'specialty', 'qualification', 'experience', 'fee', 'rating', 'reviews', 'clinicId', 'clinic', 'photo', 'languages', 'about', 'treatments', 'distance', 'nextAvailable', 'doctorReviews'];
-export function publicDoctor(row: Record<string, unknown>) { return Object.fromEntries(publicDoctorFields.map(key => [key, row[key]])); }
+export function publicDoctor(row: Record<string, unknown>): Record<string, any> & { id: string } { return { ...Object.fromEntries(publicDoctorFields.map(key => [key, row[key]])), id: String(row.id) }; }
 

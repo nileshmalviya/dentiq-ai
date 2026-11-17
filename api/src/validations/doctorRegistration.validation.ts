@@ -1,3 +1,4 @@
+import { confirmedClinicLocationSchema } from './location.validation.js';
 import { z } from 'zod';
 import {
   registrationFields,
@@ -79,6 +80,7 @@ export const applicationSchema = z
   .strict();
 export const registerDoctorSchema = applicationSchema
   .extend({
+    clinicLocation: confirmedClinicLocationSchema.optional(),
     password: z
       .string()
       .min(12)
@@ -99,6 +101,7 @@ export const correctApplicationSchema = applicationSchema
   .partial()
   .extend({
     personal: personalSchema.omit({ email: true }).partial().optional(),
+    clinicLocation: confirmedClinicLocationSchema.optional(),
   })
   .strict();
 export const requestVerificationSchema = z

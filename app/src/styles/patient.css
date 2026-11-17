@@ -217,3 +217,24 @@
   .doctor-profile-info h1 { font-size: 22px; }
   .doctor-profile-info > div { gap: 14px; }
 }
+
+.patient-language-scope { display: contents; }
+.patient-language-scope[lang="hi"] { font-family: Inter, "Nirmala UI", "Mangal", sans-serif; line-height: 1.6; }
+.patient-language-switcher { display: inline-flex; flex-shrink: 0; align-items: center; font-size: 11px; white-space: nowrap; gap: 2px; }
+.patient-language-switcher button { border: 0; background: transparent; color: inherit; padding: 5px 2px; cursor: pointer; font: inherit; }
+.patient-language-switcher button[aria-pressed="true"] { color: var(--primary, #009b75); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.patient-header { flex-wrap: wrap; gap: 8px; }
+.patient-language-scope[lang="hi"] .p-button { white-space: normal; height: auto; min-height: 40px; overflow-wrap: anywhere; }
+.patient-language-scope[lang="hi"] .patient-shortcuts span { font-size: 11px; }
+.patient-language-scope[lang="hi"] .patient-bottom-nav span { font-size: 10px; }
+
+.nearby-entry { margin: 12px 0; }
+.nearby-doctor-search h2 { font-size: 19px; }
+.nearby-doctor-search > p { font-size: 13px; line-height: 1.6; }
+.nearby-actions, .nearby-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 16px 0; }
+.nearby-filters { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 16px 0; }
+.nearby-filters label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; }
+.nearby-filters input, .nearby-filters select { min-width: 0; width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); background: var(--surface); }
+.nearby-doctor-search .doctor-card-bottom { flex-wrap: wrap; gap: 8px; }
+.nearby-doctor-search .doctor-card-meta { flex-wrap: wrap; }
+.nearby-doctor-search .doctor-card-main > div { min-width: 0; overflow-wrap: anywhere; }

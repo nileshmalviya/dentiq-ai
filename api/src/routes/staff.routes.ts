@@ -1,3 +1,4 @@
+import { updateClinicLocationSchema } from '../validations/location.validation.js';
 import type { Router, RequestHandler } from 'express';
 import type { Dependencies } from '../container/dependencies.js';
 import { identity, authorize, validate } from '../middleware/index.js';
@@ -5,6 +6,8 @@ import { httpSchemas } from '../validations/http.validation.js';
 import type { Resource } from '../validations/resource.validation.js';
 export function registerStaffRoutes(router: Router, d: Dependencies, authLimit: RequestHandler, publicLimit: RequestHandler) {
     const { controllers: c, auth } = d;
+    router.get('/doctor/clinic-locations', identity(auth), authorize('DOCTOR'), c.clinicLocations.list);
+    router.patch('/doctor/clinic-locations/:id', identity(auth), authorize('DOCTOR'), publicLimit, validate(updateClinicLocationSchema), c.clinicLocations.update);
     for (const prefix of ['admin', 'doctor'] as const) {
         const access = [identity(auth), authorize(prefix === 'admin' ? 'SUPER_ADMIN' : 'DOCTOR')];
         for (const endpoint of ['dashboard', 'reports', 'analytics'])

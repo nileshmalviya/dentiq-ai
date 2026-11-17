@@ -1,3 +1,4 @@
+import { doctorHasClinic } from './clinic-location.service.js';
 import { DateTime } from 'luxon';
 import { randomUUID } from 'node:crypto';
 import { AppError } from '../errors/AppError.js';
@@ -6,11 +7,12 @@ import { ResourceService } from './resource.service.js';
 import { definitions, publicDoctor } from '../validations/resource.validation.js';
 export const transitions: Record<string, string[]> = { Scheduled: ['Confirmed', 'Checked In', 'Cancelled'], Confirmed: ['Checked In', 'Cancelled'], 'Checked In': ['In Progress', 'Cancelled'], 'In Progress': ['Completed'], Completed: [], Cancelled: [] };
 export class AppointmentService extends ResourceService {
-    async availability(doctorId: string, date: string) {
+    async availability(doctorId: string, date: string, clinicId?: string) {
         const doctor = await this.repos.doctors.findOne({ id: doctorId, status: 'Active', clinicalServicesEnabled:{$ne:false}, $or:[{registrationManaged:{$ne:true}},{approvalStatus:'APPROVED',emailVerificationStatus:'VERIFIED'}] });
         if (!doctor)
             throw new AppError(404, 'Doctor not found');
-        const clinic = await this.repos.clinics.findOne({ id: doctor.clinicId, status: 'Active' });
+        if (clinicId && !await doctorHasClinic(this.repos, doctor, clinicId)) throw new AppError(404, 'Clinic not available');
+        const clinic = await this.repos.clinics.findOne({ id: clinicId || doctor.clinicId, status: 'Active' });
         if (!clinic)
             throw new AppError(404, 'Clinic not available');
         const day = DateTime.fromISO(date, { zone: clinic.timezone });
@@ -22,11 +24,11 @@ export class AppointmentService extends ResourceService {
         }[]).find(a => a.day === day.weekday)?.times || [];
         const times = configured.map(time => DateTime.fromISO(`${date}T${time}`, { zone: clinic.timezone })).filter(t => t.isValid && t > DateTime.now());
         const occupied = await this.repos.appointments.findMany({ filter: { doctorId, startTime: { $in: times.map(t => t.toUTC().toISO()) }, status: { $ne: 'Cancelled' } }, sort: { startTime: 1 }, skip: 0, limit: 100 });
-        return { doctor: publicDoctor(doctor), date, timezone: clinic.timezone, slots: times.filter(t => !occupied.some(a => a.startTime === t.toUTC().toISO())).map(t => ({ startTime: t.toUTC().toISO(), endTime: t.plus({ minutes: doctor.slotDuration || 30 }).toUTC().toISO(), label: t.toFormat('h:mm a') })) };
+        return { doctor: Object.assign(publicDoctor(doctor), { clinicId: clinic.id, clinic: clinic.name }), date, timezone: clinic.timezone, slots: times.filter(t => !occupied.some(a => a.startTime === t.toUTC().toISO())).map(t => ({ startTime: t.toUTC().toISO(), endTime: t.plus({ minutes: doctor.slotDuration || 30 }).toUTC().toISO(), label: t.toFormat('h:mm a') })) };
     }
     async book(actor: Actor | undefined, input: Record<string, any>) {
         const { doctorId, date, startTime, reason } = input;
-        const available = await this.availability(doctorId, date);
+        const available = await this.availability(doctorId, date, input.clinicId);
         const slot = available.slots.find(s => s.startTime === startTime);
         if (!slot)
             throw new AppError(409, 'Appointment slot is no longer available');

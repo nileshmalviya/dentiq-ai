@@ -1,4 +1,4 @@
-export interface ChatMessage { id: string; sender: "assistant" | "user"; text: string; }
+export interface ChatMessage { id: string; sender: "assistant" | "user"; translationKey?: string; text: string; }
 export const initialMessages: ChatMessage[] = [
   { id: "intro", sender: "assistant", text: "Hi! I’m Dentiq AI 👋\nHow can I help you today?" },
   { id: "concern", sender: "user", text: "I have a toothache on my lower left." },

@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {updateClinicLocationSchema} from '../dist/src/validations/location.validation.js';
 import {registerDoctorSchema,correctApplicationSchema} from '../dist/src/validations/doctorRegistration.validation.js';
 import { z } from '../node_modules/zod/index.js';
 import { definitions } from '../dist/src/validations/resource.validation.js';
@@ -53,5 +54,19 @@ for(const [path,methods]of Object.entries(paths))for(const [method,operation]of 
  if(path.startsWith('/doctor/')||path.startsWith('/inventory'))operation.description+=' Self-registered doctors require verified email and current APPROVED status on every request.';
 }
 
+add('/public/doctors/nearby','get',{public:true,parameters:[
+ ...['latitude','longitude'].map(name=>({name,in:'query',schema:{type:'number',minimum:name==='latitude'?-90:-180,maximum:name==='latitude'?90:180}})),
+ {name:'radiusKm',in:'query',schema:{type:'number',minimum:0.1,maximum:500,default:20}},
+ {name:'city',in:'query',schema:{type:'string',maxLength:200}},
+ ...['specialization','search','concern'].map(name=>({name,in:'query',schema:{type:'string'}})),
+ {name:'sort',in:'query',schema:{type:'string',enum:['distance','rating','experience'],default:'distance'}},
+ {name:'page',in:'query',schema:{type:'integer',minimum:1,default:1}},
+ {name:'limit',in:'query',schema:{type:'integer',minimum:1,maximum:50,default:10}}
+],description:'Transient coordinate search or city/locality fallback. Approved doctors at active clinics only. $geoNear distances are straight-line kilometers; doctors are deduplicated to the nearest clinic before pagination. Request-scoped patient coordinates are never persisted or logged; responses are no-store. The configured maximum radius is enforced.'});
+add('/doctor/clinic-locations','get',{description:'Approved DOCTOR role. Returns only associated active clinics for explicit location updates.'});
+add('/doctor/clinic-locations/{id}','patch',{body:schema(updateClinicLocationSchema),description:'Approved owning DOCTOR role; confirmed must be true. Updates the single shared clinic GeoJSON point and address metadata.'});
+for(const path of ['/public/doctors/{id}','/public/doctors/{id}/availability'])paths[path].get.parameters.push({name:'clinicId',in:'query',schema:{type:'string'},description:'Optional associated active clinic. Defaults to the primary clinic.'});
+paths['/public/appointments'].post.requestBody.content['application/json'].schema.properties.clinicId={type:'string',description:'Optional associated active clinic; primary-clinic booking is unchanged.'};
+for(const path of ['/recommendations/doctors','/ai-chat/message'])paths[path].post.requestBody.content['application/json'].schema.properties.language={type:'string',enum:['en','hi'],default:'en'};
 fs.writeFileSync(new URL('../openapi.json',import.meta.url),JSON.stringify({openapi:'3.0.3',info:{title:'Dentiq AI API',version:'1.0.0'},servers:[{url:'/api/v1'}],paths,components:{securitySchemes:{bearerAuth:{type:'http',scheme:'bearer',bearerFormat:'JWT'}},schemas:components}},null,2)+'\n');
 console.log(`Documented ${Object.values(paths).reduce((n,p)=>n+Object.keys(p).length,0)} endpoint operations.`);

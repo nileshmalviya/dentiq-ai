@@ -1,3 +1,4 @@
+import type { ConfirmedClinicLocation } from './doctor.service';
 import { write } from './apiClient';
 import { createResourceService } from './resource.service';
 export type FieldValue = string | number | boolean | string[];
@@ -68,7 +69,7 @@ export interface RegistrationDetails {
 export const doctorRegistrationService = {
   ...createResourceService(['/doctor-registration']),
   register: (
-    data: DoctorApplication & { password: string; confirmPassword: string },
+    data: DoctorApplication & { password: string; confirmPassword: string; clinicLocation?: ConfirmedClinicLocation },
   ) =>
     write<{
       registrationId: string;

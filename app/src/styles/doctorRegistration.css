@@ -377,3 +377,10 @@
     font-size: 11px;
   }
 }
+
+.clinic-location-fields { margin: 20px 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; }
+.clinic-location-confirmation { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+.clinic-location-confirmation input { width: auto; flex-shrink: 0; margin-top: 5px; }
+.doctor-clinic-locations { margin-top: 24px; }
+.doctor-clinic-locations fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 16px; min-width: 0; }
+.doctor-clinic-locations legend { font-weight: 600; padding: 0 8px; }

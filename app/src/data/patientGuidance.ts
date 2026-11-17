@@ -1,4 +1,4 @@
-export interface DentalGuidance { emergency: boolean; specializations: string[]; doctorIds: string[]; summary: string; }
+export interface DentalGuidance { emergency: boolean; specializations: string[]; doctorIds: string[]; summary: string; summaryKey?: string; }
 export const emergencySource = "https://www.nhs.uk/nhs-services/dentists/how-to-find-an-nhs-dentist-in-an-emergency/";
 export const emergencyMessage = "Seek emergency medical care now for severe mouth or neck swelling that affects breathing or swallowing, or heavy bleeding that will not stop. Call your local emergency number or go to the nearest emergency department. Do not wait for a routine dental booking.";
 export const followUpSymptoms = ["Chewing or biting", "Hot or cold sensitivity", "Night-time pain", "Swelling or tenderness", "Braces or alignment concerns", "Swelling with breathing difficulty", "Bleeding that will not stop"];

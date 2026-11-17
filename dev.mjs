@@ -41,7 +41,7 @@ process.on('SIGTERM', () => stop());
 async function main() {
   if (!await apiReady()) {
     console.log('Starting Dentiq API and connecting to MongoDB...');
-    launch(['--import', 'tsx', 'src/server.ts'], backend);
+    launch(['--import', 'tsx', '--watch', 'src/server.ts'], backend);
     const deadline = Date.now() + 45000;
     while (!stopping && !await apiReady()) {
       if (Date.now() >= deadline) throw new Error('API did not start. Check api/.env and the API startup message above.');

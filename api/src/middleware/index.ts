@@ -56,3 +56,10 @@ export const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
     }
     res.status(error?.type === 'entity.parse.failed' ? 400 : 500).json({ success: false, message: error?.type === 'entity.parse.failed' ? 'Invalid JSON' : 'The operation could not be completed', errors: [] });
 };
+
+// Express 5 exposes req.query as a getter. Validate without replacing or retaining it.
+export const validateQuery = (schema: z.ZodTypeAny): RequestHandler => (req, _res, next) => {
+    const parsed = schema.safeParse(req.query);
+    if (!parsed.success) return next(new AppError(400, 'Invalid doctor search parameters'));
+    next();
+};

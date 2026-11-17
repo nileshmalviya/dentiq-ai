@@ -1,6 +1,6 @@
 export interface Doctor {
   id: string; name: string; specialty: string; rating: number; reviews: number; distance: string;
-  nextAvailable: string; experience: number; fee: number; photo: string; clinic: string;
+  clinicId?: string; clinicAddress?: string; distanceKm?: number; nextAvailable: string; nextAvailableAt?: string; timezone?: string; experience: number; fee: number; photo: string; clinic: string;
   qualification: string; languages: string; about: string; treatments: string[];
 }
 
